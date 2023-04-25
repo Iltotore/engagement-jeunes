@@ -2,6 +2,8 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +19,8 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+Artisan::command("user:register {mail} {password} {name}", function (string $mail, string $password, string $name) {
+    User::create(["email" => $mail, "password" => $password, "name" => $name]);
+    info("Registered: $mail, $password, $name");
+})->purpose("Register a user");
