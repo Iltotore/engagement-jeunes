@@ -20,7 +20,7 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-Artisan::command("user:register {mail} {password} {name}", function (string $mail, string $password, string $name) {
-    User::create(["email" => $mail, "password" => $password, "name" => $name]);
-    info("Registered: $mail, $password, $name");
+Artisan::command("user:register {mail} {password} {firstName} {lastName} {birthDate}", function (string $mail, string $password, string $firstName, string $lastName, string $birthDate) {
+    User::create(["email" => $mail, "password" => $password, "first_name" => $firstName, "last_name" => $lastName, "birth_date" => $birthDate]);
+    info("Registered: $mail, $password, $firstName, $lastName, $birthDate");
 })->purpose("Register a user");
