@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\LoginController;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,4 +18,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//C'est un GET mais c'est que pour le test
 Route::get("/login", [LoginController::class, "authenticate"]);
+
+Route::get("/home", function () {
+    return view("home");
+});
+

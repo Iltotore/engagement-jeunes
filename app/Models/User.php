@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
+    // Allow any field to be inserted
+    protected $guarded = [];
 
     /**
      * @var string
@@ -13,18 +15,9 @@ class User extends Authenticatable
     protected $table = 'users';
 
     /**
-     * @var string
-     */
-    protected $primaryKey = "email";
-
-// Allow any field to be inserted
-    protected $guarded = [];
-
-    /**
      * Add a mutator to ensure hashed passwords
      */
-    public function setPasswordAttribute($password)
-    {
+    public function setPasswordAttribute($password) {
         $this->attributes['password'] = bcrypt($password);
     }
 }
