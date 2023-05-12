@@ -12,9 +12,12 @@
 
 </head>
 <body>
-<p>Bonjour {{ Auth::check() }} !</p>
+<p>Bonjour !</p>
 @auth
     <p>Je suis authentifié</p>
+    <p> Nom: {{ Auth::user()->last_name }}</p>
+    <p>References: {{ Auth::user()->references()->get() }}</p>
+    <p>Hard skills: {{ implode(" et ", Auth::user()->references()->first()->hardSkills()) }}</p>
 @else
     <p>Je ne suis PAS authentifié</p>
 @endauth
