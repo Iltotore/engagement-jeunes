@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class LoginController extends Controller {
+class LoginController extends Controller
+{
     /**
      * Handle an authentication attempt.
      */
-    public function authenticate(Request $request): RedirectResponse {
+    public function authenticate(Request $request): RedirectResponse
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
