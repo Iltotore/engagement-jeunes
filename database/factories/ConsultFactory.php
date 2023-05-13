@@ -2,13 +2,15 @@
 
 namespace Database\Factories;
 
+use App\Models\Reference;
+use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Consultation>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Consult>
  */
-class ConsultationFactory extends Factory
+class ConsultFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +20,8 @@ class ConsultationFactory extends Factory
     public function definition(): array
     {
         return [
-            "id" => Str::random(10)
+            "user_id" => User::factory(),
+            "reference_id" => Reference::factory()
         ];
     }
 }
