@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Consultation extends Authenticatable {
+class Consult extends Authenticatable {
     protected $guarded = [];
 
     public function references() {
