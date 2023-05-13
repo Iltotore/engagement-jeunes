@@ -7,7 +7,7 @@ use Tests\TestCase;
 
 class ConsultTest extends TestCase
 {
-//    use RefreshDatabase;
+    use RefreshDatabase;
 
     /**
      * A basic unit test example.
