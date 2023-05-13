@@ -2,10 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Reference;
 use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Consult>
@@ -21,7 +20,8 @@ class ConsultFactory extends Factory
     {
         return [
             "user_id" => User::factory(),
-            "reference_id" => Reference::factory()
+            "token" => Str::random(10),
+            "expire_at" => fake()->date()
         ];
     }
 }
