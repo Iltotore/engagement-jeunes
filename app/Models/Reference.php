@@ -25,4 +25,9 @@ class Reference extends Authenticatable
     {
         return explode(",", $this->softSkillValues);
     }
+
+    public function consults()
+    {
+        return $this->belongsToMany(Consult::class);
+    }
 }
