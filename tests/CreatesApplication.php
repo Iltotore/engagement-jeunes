@@ -3,17 +3,28 @@
 namespace Tests;
 
 use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Foundation\Application;
 
 trait CreatesApplication {
     /**
      * Creates the application.
+     *
+     * @return \Illuminate\Foundation\Application
      */
-    public function createApplication(): Application {
-        $app = require __DIR__ . '/../bootstrap/app.php';
+    public function createApplication()
+    {
+        $app = require __DIR__.'/../bootstrap/app.php';
 
         $app->make(Kernel::class)->bootstrap();
 
+        $this->clearCache();
+
         return $app;
+    }
+
+    private function clearCache(): void
+    {
+        Artisan::call('cache:clear');
     }
 }
