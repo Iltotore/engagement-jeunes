@@ -5,7 +5,7 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
-class ConsultTest extends TestCase
+class UserTest extends TestCase
 {
 //    use RefreshDatabase;
 
