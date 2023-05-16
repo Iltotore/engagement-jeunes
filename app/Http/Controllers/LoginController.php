@@ -17,12 +17,14 @@ class LoginController extends Controller {
             'password' => ['required'],
         ]);
 
+        $redirect = $request->redirect ?? "/home";
+
         if (Auth::attempt($credentials)) {
             $request->session()->start();
 
-            return redirect()->to("/home");
+            return redirect()->to($redirect);
         } else {
-            return redirect()->intended("")->withErrors([
+            return redirect()->intended("/login")->withErrors([
                 'email' => 'The provided credentials do not match our records.',
             ])->onlyInput('email');
         }

@@ -5,9 +5,10 @@
 <body>
 	@include('app_common', ['message' => "Je m'engage"])
 	<div>
-    	<form action="/auth" method="get">
+    	<form action="/api/login" method="get">
 			<fieldset>
 				<legend>Connexion</legend>
+				<input type="hidden" name="redirect" value="{{ request()->get('redirect') ?? '/home' }}">
 				<label for="email">Entrer votre adresse mail:<input type="email" name="email" required></label><br>
 				<label for="password">Entrer votre mot de passe:<input type="password" name="password" required></label><br>
 				<label for="remember">Se souvenir de moi<input type="checkbox" name="remember"></label>
@@ -16,9 +17,10 @@
 		</form>
 	</div>
 	<div>
-		<form action="/register" method="get">
+		<form action="/api/register" method="get">
 			<fieldset>
 				<legend>Inscritpion</legend>
+				<input type="hidden" name="redirect" value="{{ request()->get('redirect') ?? '/home' }}">
 				<label for="email">Email:<input type="email" name="email" required></label><br>
 				<label for="password">Mot de passe (8 caractères minimum):<input type="password" name="password"
 																				minlength="8" required></label><br>
