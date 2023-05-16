@@ -24,3 +24,10 @@ Artisan::command("user:register {mail} {password} {firstName} {lastName} {birthD
     User::create(["email" => $mail, "password" => $password, "first_name" => $firstName, "last_name" => $lastName, "birth_date" => $birthDate]);
     info("Registered: $mail, $password, $firstName, $lastName, $birthDate");
 })->purpose("Register a user");
+
+Artisan::command("mail:send {to} {subject} {content}", function(string $to, string $subject, string $content) {
+    echo $to;
+    Mail::raw($content, function ($m) use($to, $subject, $content) {
+        $m->to($to)->subject($subject);
+    });
+})->purpose("Send a mail");
