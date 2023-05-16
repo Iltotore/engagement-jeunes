@@ -4,9 +4,7 @@
 		<title>JEUNES 6.4</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-		<style type="text/css">
-			
-		</style>
+		<!-- Link proper stylesheet here, for example : <link rel="stylesheet" href="{{ asset('css/home.css') }}"> -->
 	</head>
 	<body>
 		<div id="top_bars">
@@ -24,7 +22,7 @@
 			</div>
 		</div>
 		<div class="content_space">
-			
+			<!-- Content of the page goes here -->
 		</div>
 	</body>
 </html>
