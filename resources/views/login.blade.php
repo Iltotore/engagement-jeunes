@@ -1,4 +1,5 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<<<<<<< HEAD
 <head>
 	@include('head_common')
 </head>

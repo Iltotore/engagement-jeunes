@@ -38,7 +38,6 @@ img#logo {
 div#right_side {
 	display:inline-block;
 	vertical-align: bottom;
-	height: auto;
 	width: calc(100vw - 14em);
 	font-size: 1.7em;
 	color: white;
@@ -50,6 +49,8 @@ h1#motto_text {
 	text-align: right;
 	letter-spacing: 0.05em;
 	font-weight:1;
+	margin-bottom: 0.5em;
+	margin-top: 0em;
 }
 
 div#tab_bar {

@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="{{ asset('css/home.css') }}">
 	</head>
 	<body>
-		@include('app_common')
+		@include('app_common', ['message' => "Pour faire de l'engagement une valeur"])
 		<div class="content_space">
 			<div id="home_grid">
 				<div>
