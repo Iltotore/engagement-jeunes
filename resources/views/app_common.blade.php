@@ -2,7 +2,7 @@
 	<div id="motto_bar">
 		<img id="logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" height="100%" xmlns="http://www.w3.org/2000/svg"/>
 		<div id="right_side">
-			<h1 id="motto_text">{{ $message }}</h1>
+			<h1 id="motto_text">{{ $message ?? ""}}</h1>
 		</div>
 	</div>
 	<div id="tab_bar">
