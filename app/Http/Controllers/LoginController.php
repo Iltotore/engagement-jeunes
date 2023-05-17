@@ -25,8 +25,8 @@ class LoginController extends Controller {
             return redirect()->to($redirect);
         } else {
             return redirect()->intended("/login")->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+                'credentials' => 'Addresse mail ou mot de passe incorrect',
+            ])->withInput($request->except("password"));
         }
     }
 }
