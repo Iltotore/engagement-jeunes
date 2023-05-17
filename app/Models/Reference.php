@@ -23,7 +23,7 @@ class Reference extends Authenticatable
 
     public function softSkills()
     {
-        return explode(",", $this->softSkillValues);
+        return explode(",", $this->soft_skill_values);
     }
 
     public function consults()
