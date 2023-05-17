@@ -30,4 +30,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reference::class, "user_id");
     }
+
+    public function consults()
+    {
+        return $this->hasMany(Consult::class, "user_id");
+    }
 }
