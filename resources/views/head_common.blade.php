@@ -49,25 +49,34 @@
 		margin-top: 0em;
 		margin-right: 0.7em;
 		margin-left: auto;
-		font-size: 1.7em;
+		font-size: 2.7em;
 		color: white;
 		align-self: flex-end;
 	}
 
 	div#tab_bar {
-		display:inline-block;
-		justify-content: left;
-		text-align: left;
-		max-width: 100vw;
+		display: flex;
+		margin-left: auto;
+		margin-right: auto;
+		flex-orientation: row;
+		text-align: center;
+		max-width: fit-content;
+		flex-grow: 0;
+		gap: 50px;
+		justify-content: center;
+		max-height: fit-content;
 		background-image: radial-gradient(circle at top 0% left 20%, var(--color2), var(--less-dark-color) 40%);
-		padding: 1em;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-top: 20px;
+		padding-bottom: 15px;
 	}
 
 	div#tab_bar a {
+		flex-grow: 1;
 		text-decoration: none;
 		font-weight: lighter;
-		font-size: 1.6em;
-		margin: 1em;
+		font-size: 1.5em;
 	}
 
 	a#jeune_button {
