@@ -4,6 +4,9 @@
 </head>
 <body>
 	@include('app_common', ['message' => "Je m'engage"])
+	@foreach($errors->all() as $error)
+	  <label class="error" >{{ $error }}</label><br>
+	@endforeach
 	<div>
     	<form action="/api/login" method="get">
 			<fieldset>
