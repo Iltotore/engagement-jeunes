@@ -19,7 +19,6 @@ Route::get('/', function () {
 });
 
 //C'est un GET mais c'est que pour le test
-Route::get("/auth", [LoginController::class, "authenticate"]);
 
 Route::get("/home", function () {
     return view("home");
@@ -28,3 +27,5 @@ Route::get("/home", function () {
 Route::get("/login", function () {
     return view("login");
 });
+
+Route::get("/api/login", [LoginController::class, "authenticate"]);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LoginController extends Controller {
+    
     /**
      * Handle an authentication attempt.
      */
@@ -17,14 +18,16 @@ class LoginController extends Controller {
             'password' => ['required'],
         ]);
 
+        $redirect = $request->redirect ?? "/home";
+
         if (Auth::attempt($credentials)) {
             $request->session()->start();
 
-            return redirect()->to("/home");
+            return redirect()->to($redirect);
         } else {
-            return redirect()->intended("")->withErrors([
-                'email' => 'The provided credentials do not match our records.',
-            ])->onlyInput('email');
+            return redirect()->intended("/login")->withErrors([
+                'credentials' => 'Addresse mail ou mot de passe incorrect',
+            ])->withInput($request->except("password"));
         }
     }
 }
