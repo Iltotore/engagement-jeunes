@@ -1,0 +1,107 @@
+/* Upper grid */
+
+div#home_grid {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	color:grey;
+	text-align: left;
+	margin-top: 1em;
+}
+
+div#home_grid div {
+	margin: 2em;
+}
+
+div#home_grid div * {
+	font-weight: lighter;
+}
+
+div#home_grid div h1 {
+	margin: 0;
+}
+
+div#home_grid div p {
+	margin-top: 0;
+	font-size: 1.1em;
+}
+
+div#home_grid div h3 {
+	margin-top: 0;
+	font-size: 1.25em;
+}
+
+/* Lower grid */
+
+div#home_links_grid {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin-top: 4em;
+	gap: 2em;
+}
+a.home_box {
+	border: 0.4em solid;
+	width: 14em;
+	height: 14em;
+	text-decoration: none;
+	color:white;
+	display: flex;
+  	flex-direction: column;
+}
+div.home_box_top_part {
+	font-size: xx-large;
+}
+div.home_box_top_part p {
+	margin: 0;
+}
+div.home_box_top_part p:nth-child(1) {
+	font-size: 0.9em;
+	padding-top: 0.4em;
+	padding-bottom: 0.2em;
+}
+div.home_box_top_part p:nth-child(2) {
+	font-size: 1em;
+	padding-top: 0.2em;
+	padding-bottom: 0.4em;
+}
+div.home_box_bottom_part {
+	flex-grow: 1;
+}
+div.home_box_bottom_part p {
+	margin: 0;
+	color: grey;
+	text-align: left;
+	font-size: 1.25em;
+	padding: 0.4em;
+	word-wrap: break-word;
+	hyphens: auto;
+}
+
+a#home_link_valorisation {
+	border-color: var(--jeune-color);
+}
+a#home_link_valorisation div.home_box_top_part {
+	background-image: linear-gradient(to left, var(--jeune-color) 60%, var(--jeune-alt-color) 95%);
+}
+a#home_link_valorisation div.home_box_bottom_part {
+	background-image: radial-gradient(circle at top left, var(--color1) 50%, var(--jeune-alt-color) 99%);
+}
+
+a#home_link_confirmation {
+	border-color: var(--referent-alt-color);
+}
+a#home_link_confirmation div.home_box_top_part {
+	background-image: linear-gradient(to left, var(--referent-color) 60%, var(--referent-alt-color) 95%);
+}
+a#home_link_confirmation div.home_box_bottom_part {
+	background-image: radial-gradient(circle at top left, var(--color1) 5%, var(--referent-alt-color) 120%);
+}
+
+a#home_link_consultation {
+	border-color: var(--consultant-color);
+}
+a#home_link_consultation div.home_box_top_part {
+	background-image: linear-gradient(to left, var(--consultant-color) 60%, var(--consultant-alt-color) 95%);
+}
+a#home_link_consultation div.home_box_bottom_part {
+	background-image: radial-gradient(circle at top left, var(--color1) 5%, var(--consultant-alt-color) 120%);
+}
