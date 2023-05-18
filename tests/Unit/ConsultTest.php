@@ -22,7 +22,7 @@ class ConsultTest extends TestCase
         $consults = $user->consults()->get();
         assertTrue(sizeof($consults) == 3);
         foreach($consults as $consult){
-            assertTrue($consult->user_id == $user->id);
+            assertTrue($consult->user->id == $user->id);
         }
     }
 
@@ -32,9 +32,9 @@ class ConsultTest extends TestCase
         $consult = Consult::factory()->for($user)->create();
         $references = Reference::factory()->count(3)->for($user)->create();
         assertTrue(sizeof($references) == 3);
-        assertTrue($consult->user_id == $user->id);
+        assertTrue($consult->user->id == $user->id);
         foreach($references as $ref) {
-            assertTrue($ref->user_id == $user->id);
+            assertTrue($ref->user->id == $user->id);
         }
     }
 

@@ -21,7 +21,7 @@ class ReferenceTest extends TestCase
         $references = $user->references()->get();
         assertTrue(sizeof($references) == 3, "right count");
         foreach ($references as $ref) {
-            assertTrue($ref->user_id == $user->id, "id consistent");
+            assertTrue($ref->user->id == $user->id, "id consistent");
         }
     }
 
