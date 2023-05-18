@@ -3,8 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
+
+    use HasFactory;
 
     // Allow any field to be inserted
     protected $guarded = [];
@@ -17,7 +21,18 @@ class User extends Authenticatable {
     /**
      * Add a mutator to ensure hashed passwords
      */
-    public function setPasswordAttribute($password) {
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = bcrypt($password);
+    }
+
+    public function references()
+    {
+        return $this->hasMany(Reference::class, "user_id");
+    }
+
+    public function consults()
+    {
+        return $this->hasMany(Consult::class, "user_id");
     }
 }

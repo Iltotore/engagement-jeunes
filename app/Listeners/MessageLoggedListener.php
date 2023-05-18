@@ -5,18 +5,21 @@ namespace App\Listeners;
 use Illuminate\Log\Events\MessageLogged;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-class MessageLoggedListener {
+class MessageLoggedListener
+{
     /**
      * Create the event listener.
      */
-    public function __construct() {
+    public function __construct()
+    {
         //
     }
 
     /**
      * Handle the event.
      */
-    public function handle(MessageLogged $event): void {
+    public function handle(MessageLogged $event): void
+    {
         $output = new ConsoleOutput();
         $output->writeln("<error>{$event->message}</error>");
     }
