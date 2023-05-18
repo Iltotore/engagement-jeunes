@@ -8,7 +8,7 @@
 	<body>
 		<div id="welcome_background">
 			<h1 id="motto_text">Pour faire de l'engagement</br>une valeur !</h1></br>
-			<img src="{{ asset('svg/LOGOS_JEUNES.svg') }}" height="300" xmlns="http://www.w3.org/2000/svg"/>
+			<img id="jeunes_logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" xmlns="http://www.w3.org/2000/svg"/>
 			<h3 id="motto_text_2">... l'expression d'un potentiel,</br>la promesse d'une richesse !</h3>
 			<a href="/home" id="enter_button">ENTRER</a>
 		</div>
