@@ -43,8 +43,6 @@ class AuthController extends Controller {
             'birth_date' => ['required', 'date'],
         ]);
 
-        $redirect = $request->redirect ?? "/home";
-
         $errors = [];
 
         if ($request->password != $request->confirm) $errors += ['password' => 'Les deux mots de passe ne correspondent pas.'];

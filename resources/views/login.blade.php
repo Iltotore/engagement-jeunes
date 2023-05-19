@@ -23,7 +23,6 @@
 		<form action="/api/register" method="get">
 			<fieldset>
 				<legend>Inscription</legend>
-				<input type="hidden" name="redirect" value="{{ request()->get('redirect') ?? old('redirect') ?? '/home' }}">
 				<label for="email">Email:<input type="email" name="email" value="{{ old('email') }}" required></label><br>
 				<label for="password">Mot de passe (8 caractères minimum):<input type="password" name="password" minlength="8" required></label><br>
 				<label for="confirm">Confirmer le mot de passe:<input type="password" name="confirm" required></label><br>
