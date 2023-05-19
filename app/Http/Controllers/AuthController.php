@@ -8,6 +8,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\Factory;
+use Illuminate\View\View;
 
 class AuthController extends Controller {
 
@@ -61,5 +63,15 @@ class AuthController extends Controller {
         return redirect()
             ->to("/registered")
             ->with(["user" => $newUser]);
+    }
+
+    public function confirm(Request $request): RedirectResponse | View | Factory {
+        $token = $request->token;
+
+        $user = User::where("registration_token", $token)->first();
+        if($user) {
+            $user->confirm();
+            return view("confirm");
+        } else abort(404);
     }
 }

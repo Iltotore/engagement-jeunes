@@ -32,4 +32,6 @@ Route::get("/registered", function () {
     return view("registered");
 });
 
+Route::get("/confirm", [AuthController::class, "confirm"]);
+
 Route::get("/api/login", [LoginController::class, "authenticate"]);

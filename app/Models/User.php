@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Nette\InvalidStateException;
 
 class User extends Authenticatable {
 
@@ -35,7 +36,19 @@ class User extends Authenticatable {
     }
 
     public function hasExpired(): bool {
-        return time() >= strtotime($this->expire_at);
+        return $this->isConfirmed() || time() >= strtotime($this->expire_at);
+    }
+
+    public function isConfirmed(): bool {
+        return $this->expire_at == null && $this->registration_token == null;
+    }
+
+    public function confirm(): void {
+        if($this->isConfirmed()) throw new InvalidStateException("Cannot confirm already confirmed user.");
+        if($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired user.");
+
+        $this->expire_at = null;
+        $this->registration_token = null;
     }
 
     public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate): User {
