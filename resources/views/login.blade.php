@@ -5,7 +5,7 @@
 <body>
 	@include('app_common', ['message' => "Je m'engage"])
 	@foreach($errors->all() as $error)
-	  <label class="error" >{{ $error }}</label><br>
+	  <label class="error">{{ $error }}</label><br>
 	@endforeach
 	<div>
     	<form action="/api/login" method="get">
@@ -22,11 +22,11 @@
 	<div>
 		<form action="/api/register" method="get">
 			<fieldset>
-				<legend>Inscritpion</legend>
+				<legend>Inscription</legend>
 				<input type="hidden" name="redirect" value="{{ request()->get('redirect') ?? old('redirect') ?? '/home' }}">
 				<label for="email">Email:<input type="email" name="email" value="{{ old('email') }}" required></label><br>
 				<label for="password">Mot de passe (8 caractères minimum):<input type="password" name="password" minlength="8" required></label><br>
-				<label for="confitm">Confirmer le mot de passe:<input type="password" name="confirm" required></label><br>
+				<label for="confirm">Confirmer le mot de passe:<input type="password" name="confirm" required></label><br>
 				<label for="first_name">Prénom:<input type="text" name="first_name" value="{{ old('first_name') }}" required></label><br>
 				<label for="last_name">Nom:<input type="text" name="last_name" value="{{ old('last_name') }}" required></label><br>
 				<label for="birth_date">Date de naissance:<input type="date" name="birth_date" value="{{ old('birth_date') }}" required></label><br>

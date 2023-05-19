@@ -28,4 +28,8 @@ Route::get("/login", function () {
     return view("login");
 });
 
+Route::get("/registered", function () {
+    return view("registered");
+});
+
 Route::get("/api/login", [LoginController::class, "authenticate"]);

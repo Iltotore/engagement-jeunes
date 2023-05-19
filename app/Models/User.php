@@ -38,7 +38,7 @@ class User extends Authenticatable {
         return time() >= strtotime($this->expire_at);
     }
 
-    public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, int $birthDate): User {
+    public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate): User {
 
         return User::create([
             "email" => $mail,

@@ -46,7 +46,6 @@
 		width: calc(100vw - 14em);
 		font-size: 1.7em;
 		color: white;
-		
 	}
 
 	h1#motto_text {
