@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('first_name');
             $table->text('last_name');
             $table->date('birth_date');
+            $table->date('expire_at');
+            $table->text('registration_token');
             $table->date('created_at');
             $table->date('updated_at');
             $table->text('remember_token')->nullable();

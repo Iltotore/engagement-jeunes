@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
 
     use HasFactory;
 
@@ -21,18 +22,32 @@ class User extends Authenticatable
     /**
      * Add a mutator to ensure hashed passwords
      */
-    public function setPasswordAttribute($password)
-    {
+    public function setPasswordAttribute($password) {
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function references()
-    {
+    public function references() {
         return $this->hasMany(Reference::class, "user_id");
     }
 
-    public function consults()
-    {
+    public function consults() {
         return $this->hasMany(Consult::class, "user_id");
+    }
+
+    public function hasExpired(): bool {
+        return time() >= strtotime($this->expire_at);
+    }
+
+    public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, int $birthDate): User {
+
+        return User::create([
+            "email" => $mail,
+            "password" => $password,
+            "first_name" => $firstName,
+            "last_name" => $lastName,
+            "birth_date" => $birthDate,
+            "expire_at" => date(DateTimeInterface::ATOM, time()+(3600*24)),
+            "registration_token" => uniqid()
+        ]);
     }
 }
