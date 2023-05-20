@@ -9,7 +9,7 @@
 	<body>
 		<div id="top_bars">
 			<div id="motto_bar">
-				<img id="logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" height="100%" xmlns="http://www.w3.org/2000/svg"/>
+                <a href="/home"><img id="logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" height="100%" xmlns="http://www.w3.org/2000/svg"/></a>
 				<div id="right_side">
 					<h1 id="motto_text">Pour faire de l'engagement une valeur</h1>
 				</div>
