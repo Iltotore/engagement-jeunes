@@ -49,6 +49,7 @@ class User extends Authenticatable {
 
         $this->expire_at = null;
         $this->registration_token = null;
+        $this->save();
     }
 
     public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate): User {
