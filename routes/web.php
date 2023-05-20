@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,4 +34,5 @@ Route::get("/registered", function () {
 
 Route::get("/confirm", [AuthController::class, "confirm"]);
 
-Route::get("/api/login", [LoginController::class, "authenticate"]);
+Route::get("/api/login", [AuthController::class, "login"]);
+Route::get("/api/register", [AuthController::class, "register"]);

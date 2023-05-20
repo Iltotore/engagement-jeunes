@@ -23,6 +23,8 @@ class UserFactory extends Factory
             "first_name" => fake()->word(),
             "last_name" => fake()->word(),
             "birth_date" => fake()->date(),
+            "expire_at" => fake()->date(),
+            "registration_token" => Str::random(10),
             "created_at" => fake()->date(),
             "updated_at" => fake()->date(),
             "remember_token" => Str::random(10)
