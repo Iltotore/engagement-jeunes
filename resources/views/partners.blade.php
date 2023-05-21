@@ -9,15 +9,15 @@
         jeunesse signée en 2013 par des partenaires institutionnels...
     </p>
     <br>
-    <img src="img/republique-francaise.png" alt="République Française" style="width:300px;height:200px"/>
-    <img src="img/region-aquitaine.png" alt="Région Aquitaine" style="width:300px;height:200px"/>
-    <img src="img/pyrenees-atlantiques2.png" alt="Pyrénées Atlantiques conseil général" style="width:300px;height:200px"/>
-    <img src="img/assurance-maladie.png" alt="l'assurance maladie" style="width:300px;height:200px"/>
-    <img src="img/assise-de-la-jeunesse.png" alt="Assises de la jeunesse" style="width:300px;height:200px"/>
-    <img src="img/caf-bearn.et.soule.png" alt="Caf Béarn et Soule" style="width:100px;height:200px"/>
-    <img src="img/caf-pays-basque.png" alt="Caf du Pays Basque et du Seignanx" style="width:100px;height:200px"/>
-    <img src="img/msa2.png" alt="MSA" style="width:300px;height:200px"/>
-    <img src="img/universite-pau.png" alt="Université de Pau et des pays de l'adour" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/republique-francaise.png') }}" alt="République Française" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/region-aquitaine.png') }}" alt="Région Aquitaine" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/pyrenees-atlantiques2.png') }}" alt="Pyrénées Atlantiques conseil général" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/assurance-maladie.png') }}" alt="l'assurance maladie" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/assise-de-la-jeunesse.png') }}" alt="Assises de la jeunesse" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/caf-bearn.et.soule.png') }}" alt="Caf Béarn et Soule" style="width:100px;height:200px"/>
+    <img src="{{ asset('img/caf-pays-basque.png') }}" alt="Caf du Pays Basque et du Seignanx" style="width:100px;height:200px"/>
+    <img src="{{ asset('img/msa2.png') }}" alt="MSA" style="width:300px;height:200px"/>
+    <img src="{{ asset('img/universite-pau.png') }}" alt="Université de Pau et des pays de l'adour" style="width:300px;height:200px"/>
     <br>
     <p>
         ...qui ont décidé de mettre en commun leurs actions pour les jeunes
