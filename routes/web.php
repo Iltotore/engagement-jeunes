@@ -36,3 +36,7 @@ Route::get("/confirm", [AuthController::class, "confirm"]);
 
 Route::get("/api/login", [AuthController::class, "login"]);
 Route::get("/api/register", [AuthController::class, "register"]);
+
+Route::get("/partners", function () {
+    return view("partners");
+});
