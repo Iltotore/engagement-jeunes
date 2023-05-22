@@ -40,3 +40,7 @@ Route::get("/api/register", [AuthController::class, "register"]);
 Route::get("/partners", function () {
     return view("partners");
 });
+
+Route::get("/settings", function () {
+    return view("settings");
+});
