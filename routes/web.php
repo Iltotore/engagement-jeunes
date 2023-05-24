@@ -44,3 +44,8 @@ Route::get("/partners", function () {
 Route::get("/settings", function () {
     return view("settings");
 });
+
+Route::get("/references", function () {
+    return view("references");
+});
+
