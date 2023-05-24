@@ -41,4 +41,13 @@ class Reference extends Authenticatable
         $time = App::make(TimeService::class);
         return $this->isConfirmed() || $time->currentTime(0) >= strtotime($this->expire_at);
     }
+
+    public function confirm(): void {
+        if($this->isConfirmed()) throw new InvalidStateException("Cannot confirm already confirmed reference.");
+        if($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired reference.");
+
+        $this->expire_at = null;
+        $this->registration_token = null;
+        $this->save();
+    }
 }
