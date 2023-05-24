@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Services\TimeService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\App;
 
 class Reference extends Authenticatable
 {
@@ -29,5 +31,14 @@ class Reference extends Authenticatable
     public function consults()
     {
         return $this->belongsToMany(Consult::class);
+    }
+
+    public function isConfirmed(): bool {
+        return $this->token == null && $this->expire_at == null;
+    }
+
+    public function hasExpired(): bool {
+        $time = App::make(TimeService::class);
+        return $this->isConfirmed() || $time->currentTime(0) >= strtotime($this->expire_at);
     }
 }
