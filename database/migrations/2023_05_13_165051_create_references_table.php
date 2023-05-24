@@ -26,7 +26,7 @@ return new class extends Migration
             $table->date('ref_birth_date');
             $table->text('ref_mail');
             $table->boolean('validated')->default(false);
-            $table->date('expiration_date')->nullable();
+            $table->date('expire_at')->nullable();
             $table->date('updated_at')->nullable();
             $table->date('created_at')->nullable();
         });

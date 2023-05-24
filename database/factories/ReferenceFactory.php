@@ -29,7 +29,7 @@ class ReferenceFactory extends Factory
             "ref_birth_date" => fake()->date(),
             "ref_mail" => fake()->email(),
             "validated" => fake()->boolean(),
-            "expiration_date" => fake()->date(),
+            "expire_at" => fake()->date(),
         ];
     }
 }
