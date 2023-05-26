@@ -4,6 +4,6 @@
       Bonjour Monsieur/Madame {{ $reference->ref_last_name }}.
 
       {{ $reference->user->first_name }} {{ $reference->user->last_name }} vous a envoyé une demande de référence.
-      Confirmez-la ici: {{ \Illuminate\Support\Facades\URL::to("/confirm_ref?token=" . $reference->token) }}
+      Confirmez-la ici: {{ \Illuminate\Support\Facades\URL::to("/references/display?token=" . $reference->token) }}
   </p>
 </body>

@@ -57,7 +57,7 @@ class ReferenceController extends Controller {
 
         return redirect()
           ->intended("/references")
-          ->with("message", "Référence ajoutée. En attente de confirmation.");
+          ->with(["notifications" => ["Référence ajoutée. En attente de confirmation."]]);
     }
 
     public function display(Request $request): RedirectResponse | View | Factory {
@@ -66,6 +66,28 @@ class ReferenceController extends Controller {
         $reference = Reference::where("token", $token)->first();
         if($reference) {
             return view("reference_display", ["reference" => $reference]);
+        } else abort(404);
+    }
+
+    public function edit(Request $request): RedirectResponse | View | Factory {
+        $token = $request->token;
+
+        $infos = $request->validate([
+            "hard_skills" => ["required"],
+            "soft_skills" => ["required"]
+        ]);
+
+        info($infos["hard_skills"]);
+        info($infos["soft_skills"]);
+
+        $reference = Reference::where("token", $token)->first();
+        if($reference) {
+            $reference->hard_skill_values = $infos["hard_skills"];
+            $reference->soft_skill_values = $infos["soft_skills"];
+            $reference->save();
+            return redirect()
+              ->intended("/references/display?token=".$token)
+              ->with(["notifications" => ["Référence modifiée"]]);
         } else abort(404);
     }
 

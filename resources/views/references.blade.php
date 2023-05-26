@@ -4,10 +4,6 @@
 </head>
 <body>
 @include('app_common', ['message' => "Mes références"])
-@foreach($errors->all() as $error)
-    <label class="error">{{ $error }}</label><br>
-@endforeach
-
 <div>
     <form action="api/references/add" method="get">
         <fieldset>

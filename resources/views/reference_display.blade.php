@@ -4,9 +4,6 @@
 </head>
 <body>
 @include('app_common', ['message' => "Référence de ".$reference->user->first_name])
-@foreach($errors->all() as $error)
-    <label class="error">{{ $error }}</label><br>
-@endforeach
 <div>
     <label>Jeune: {{ $reference->user->first_name }} {{ $reference->user->last_name }}</label><br>
     <label>Description:</label><br>
@@ -25,6 +22,15 @@
             <li>{{ $skill }}</li>
         @endforeach
     </ul><br>
+
+    <form action="/api/references/edit" method="get">
+        <fieldset>
+            <input type="hidden" name="token" value="{{ $reference->token }}">
+            <label for="hard_skills">Savoir faire : <input type="text" name="hard_skills" required value="{{ $reference->hard_skill_values }}"></label><br>
+            <label for="soft_skills">Savoir être : <input type="text" name="soft_skills" required value="{{ $reference->soft_skill_values }}"></label><br>
+            <input type="submit" value="Confirmer les changements">
+        </fieldset>
+    </form>
 
     <form action="/api/references/confirm" method="get">
         <input type="hidden" name="token" value="{{ $reference->token }}">

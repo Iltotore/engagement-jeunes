@@ -52,4 +52,5 @@ Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/api/login", [AuthController::class, "login"]);
 Route::get("/api/register", [AuthController::class, "register"]);
 Route::get("/api/references/add", [ReferenceController::class, "add"]);
+Route::get("/api/references/edit", [ReferenceController::class, "edit"]);
 Route::get("/api/references/confirm", [ReferenceController::class, "confirm"]);
