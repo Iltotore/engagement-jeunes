@@ -50,9 +50,12 @@ h1#motto_text {
 	margin-top: 0em;
 	margin-right: 0.7em;
 	margin-left: auto;
-	font-size: max(2.7vw,1.5em);
+	font-size: max(2.7vw,1.3em);
 	color: white;
 	align-self: flex-end;
+
+	word-wrap: break-word;
+	max-width: 60vw;
 }
 
 div#tab_bar {
