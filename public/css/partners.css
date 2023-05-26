@@ -4,11 +4,21 @@ div#icon_zone{
 	justify-content: center;
 	text-align: center;
 }
+@media (max-width: 768px) {
+	div#icon_zone {
+	  grid-template-columns: 1fr 1fr;
+	}
+  }
 
 div#icon_zone > * {
 	margin: 0.5vw 0.5vw;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+div#icon_zone img {
+	height: 10vw;
+	min-height: 100px;
 }
 
 body > p {
