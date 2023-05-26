@@ -27,7 +27,7 @@ class AuthController extends Controller
         $redirect = $request->redirect ?? "/home";
         $remember_me = $request->remember_me;
 
-        if(Auth::attempt($credentials, $remember_me)){
+        if (Auth::attempt($credentials, $remember_me)) {
             if (!Auth::user()->isConfirmed()) {
                 $request->session()->flush();
                 return redirect()
@@ -37,11 +37,11 @@ class AuthController extends Controller
             $request->session()->start();
             return redirect()->to($redirect);
         } else {
-        return redirect()
-            ->intended("/login")
-            ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
-            ->withInput($request->except("password", "confirm"));
-    }
+            return redirect()
+                ->intended("/login")
+                ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
+                ->withInput($request->except("password", "confirm"));
+        }
     }
 
     public function register(Request $request): RedirectResponse
@@ -85,4 +85,16 @@ class AuthController extends Controller
             return view("confirm");
         } else abort(404);
     }
+
+    public function logout(Request $request): RedirectResponse
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/home');
+    }
 }
+
