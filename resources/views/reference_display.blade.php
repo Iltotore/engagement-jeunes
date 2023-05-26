@@ -23,7 +23,8 @@
         @endforeach
     </ul><br>
 
-    <form action="/api/references/edit" method="get">
+    <form action="/api/references/edit" method="post">
+        @csrf
         <fieldset>
             <input type="hidden" name="token" value="{{ $reference->token }}">
             <label for="hard_skills">Savoir faire : <input type="text" name="hard_skills" required value="{{ $reference->hard_skill_values }}"></label><br>
@@ -32,7 +33,8 @@
         </fieldset>
     </form>
 
-    <form action="/api/references/confirm" method="get">
+    <form action="/api/references/confirm" method="post">
+        @csrf
         <input type="hidden" name="token" value="{{ $reference->token }}">
         <input type="submit" value="Confirmer la référence">
     </form>

@@ -10,7 +10,8 @@
 	@endforeach
 	<div id="account_area_div">
 		<div id="login_div" class="account_info_area">
-			<form action="/api/login" method="get">
+			<form action="/api/login" method="post">
+                @csrf
 				<fieldset>
 					<legend>CONNEXION</legend>
 					<input type="hidden" name="redirect" value="{{ request()->get('redirect') ?? '/home' }}">
@@ -22,7 +23,8 @@
 			</form>
 		</div>
 		<div id="register_div" class="account_info_area">
-			<form action="/api/register" method="get">
+			<form action="/api/register" method="post">
+                @csrf
 				<fieldset>
 					<legend>INSCRIPTION</legend>
 					<label for="email">Email : <input type="email" name="email" value="{{ old('email') }}" required></label><br>
