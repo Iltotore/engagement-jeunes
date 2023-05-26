@@ -56,7 +56,7 @@ div#home_links_grid {
 	margin-top: 3.3vw;
 	gap: 1.9vw;
 }
-a.home_box {
+.home_box {
 	border: 0.4em solid;
 	width: 11.5vw;
 	min-width: 8em;
@@ -112,22 +112,22 @@ a#home_link_valorisation div.home_box_bottom_part {
 	background-image: radial-gradient(circle at top left, var(--color1) 50%, var(--jeune-alt-color) 99%);
 }
 
-a#home_link_confirmation {
+div#home_link_confirmation {
 	border-color: var(--referent-alt-color);
 }
-a#home_link_confirmation div.home_box_top_part {
+div#home_link_confirmation div.home_box_top_part {
 	background-image: linear-gradient(to left, var(--referent-color) 60%, var(--referent-alt-color) 95%);
 }
-a#home_link_confirmation div.home_box_bottom_part {
+div#home_link_confirmation div.home_box_bottom_part {
 	background-image: radial-gradient(circle at top left, var(--color1) 5%, var(--referent-alt-color) 120%);
 }
 
-a#home_link_consultation {
+div#home_link_consultation {
 	border-color: var(--consultant-color);
 }
-a#home_link_consultation div.home_box_top_part {
+div#home_link_consultation div.home_box_top_part {
 	background-image: linear-gradient(to left, var(--consultant-color) 60%, var(--consultant-alt-color) 95%);
 }
-a#home_link_consultation div.home_box_bottom_part {
+div#home_link_consultation div.home_box_bottom_part {
 	background-image: radial-gradient(circle at top left, var(--color1) 5%, var(--consultant-alt-color) 120%);
 }
