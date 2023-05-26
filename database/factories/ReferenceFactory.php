@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reference>
@@ -28,8 +29,8 @@ class ReferenceFactory extends Factory
             "ref_last_name" => fake()->word(),
             "ref_birth_date" => fake()->date(),
             "ref_mail" => fake()->email(),
-            "validated" => fake()->boolean(),
-            "expiration_date" => fake()->date(),
+            "token" => Str::random(10),
+            "expire_at" => fake()->date(),
         ];
     }
 }
