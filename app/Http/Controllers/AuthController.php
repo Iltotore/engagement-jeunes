@@ -11,31 +11,41 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
-class AuthController extends Controller {
+class AuthController extends Controller
+{
 
     /**
      * Handle an authentication attempt.
      */
-    public function login(Request $request): RedirectResponse {
+    public function login(Request $request): RedirectResponse
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
         $redirect = $request->redirect ?? "/home";
+        $remember_me = $request->remember_me;
 
-        if (Auth::attempt($credentials)) {
+        if(Auth::attempt($credentials, $remember_me)){
+            if (!Auth::user()->isConfirmed()) {
+                $request->session()->flush();
+                return redirect()
+                    ->intended("/login")
+                    ->withErrors(['email' => 'Mail non confirmé']);
+            }
             $request->session()->start();
             return redirect()->to($redirect);
         } else {
-            return redirect()
-                ->intended("/login")
-                ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
-                ->withInput($request->except("password", "confirm"));
-        }
+        return redirect()
+            ->intended("/login")
+            ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
+            ->withInput($request->except("password", "confirm"));
+    }
     }
 
-    public function register(Request $request): RedirectResponse {
+    public function register(Request $request): RedirectResponse
+    {
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -56,7 +66,7 @@ class AuthController extends Controller {
                 ->withErrors($errors)
                 ->withInput($request->except("password", "confirm"));
 
-        $newUser = User::createUnconfirmed( $request->email, $request->password, $request->first_name, $request->last_name, $request->birth_date);
+        $newUser = User::createUnconfirmed($request->email, $request->password, $request->first_name, $request->last_name, $request->birth_date);
 
         Mail::to($request->email)->send(new RegisterMail($newUser));
 
@@ -65,11 +75,12 @@ class AuthController extends Controller {
             ->with(["user" => $newUser]);
     }
 
-    public function confirm(Request $request): RedirectResponse | View | Factory {
+    public function confirm(Request $request): RedirectResponse|View|Factory
+    {
         $token = $request->token;
 
         $user = User::where("registration_token", $token)->first();
-        if($user) {
+        if ($user) {
             $user->confirm();
             return view("confirm");
         } else abort(404);
