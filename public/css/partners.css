@@ -1,0 +1,42 @@
+div#icon_zone{
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	justify-content: center;
+	text-align: center;
+}
+@media (max-width: 768px) {
+	div#icon_zone {
+	  grid-template-columns: 1fr 1fr;
+	}
+  }
+
+div#icon_zone > * {
+	margin: 0.5vw 0.5vw;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#icon_zone img {
+	height: 10vw;
+	min-height: 100px;
+}
+
+body > p {
+	margin: 0;
+	color: rgb(105, 105, 105);
+	text-align: left;
+	font-size: max(1.25vw,1em);
+	padding: 0.4em;
+	word-wrap: break-word;
+	hyphens: auto;
+
+	width: 40vw;
+	min-width: 400px;
+
+	margin: 0.8vw auto;
+}
+
+p > a {
+	color: rgb(32, 0, 119);
+	text-decoration: none;
+}
