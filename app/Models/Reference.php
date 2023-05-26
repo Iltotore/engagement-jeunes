@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Services\TimeService;
+use DateTimeImmutable;
+use DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\App;
@@ -33,6 +35,10 @@ class Reference extends Authenticatable
         return $this->belongsToMany(Consult::class);
     }
 
+    public function timeDuration(): int {
+        return strtotime($this->duration);
+    }
+
     public function isConfirmed(): bool {
         return $this->token == null && $this->expire_at == null;
     }
@@ -49,5 +55,35 @@ class Reference extends Authenticatable
         $this->expire_at = null;
         $this->registration_token = null;
         $this->save();
+    }
+
+    public static function createUnconfirmed(
+        User $owner,
+        string $description,
+        string $area,
+        array $hardSkills,
+        array $softSkills,
+        int $duration,
+        string $email,
+        string $firstName,
+        string $lastName,
+        string $birthDate
+    ): Reference {
+        $time = App::make(TimeService::class);
+
+        return Reference::create([
+            "user_id" => $owner->id,
+            "description" => $description,
+            "area" => $area,
+            "hard_skill_values" => implode(",", $hardSkills),
+            "soft_skill_values" => implode(",", $softSkills),
+            "duration" => date(DateTimeInterface::ATOM, $duration),
+            "ref_mail" => $email,
+            "ref_first_name" => $firstName,
+            "ref_last_name" => $lastName,
+            "ref_birth_date" => $birthDate,
+            "expire_at" => date(DateTimeInterface::ATOM, $time->currentTime(3600*24*7)),
+            "token" => uniqid()
+        ]);
     }
 }

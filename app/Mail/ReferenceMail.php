@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Reference;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
@@ -9,7 +10,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class RegisterMail extends Mailable {
+class ReferenceMail extends Mailable {
     use Queueable, SerializesModels;
 
     /**
@@ -24,7 +25,7 @@ class RegisterMail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: "Confirmation de la référence de ".$reference->user->first_name." ".$reference->user->last_name,
+            subject: "Confirmation de la référence de ".$this->reference->user->first_name." ".$this->reference->user->last_name,
         );
     }
 
