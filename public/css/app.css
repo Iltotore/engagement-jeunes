@@ -59,7 +59,6 @@ div#tab_bar {
 	display: flex;
 	margin-left: auto;
 	margin-right: auto;
-	flex-orientation: row;
 	text-align: center;
 
 	width: fit-content;
@@ -82,8 +81,12 @@ div#tab_bar a {
 	font-size: max(1.3vw,1em);
 }
 
-a#jeune_button {
+a#account_button {
 	color: var(--jeune-color)
+}
+
+a#settings_button {
+	color: var(--referent-color)
 }
 
 a#partners_button {

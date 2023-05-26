@@ -14,9 +14,8 @@
         <h1 id="motto_text">{{ $message ?? ""}}</h1>
     </div>
     <div id="tab_bar">
-        <a id="jeune_button" href="/jeune">JEUNE</a>
-        <a id="referent_button" href="/referent">RÉFÉRENT</a>
-        <a id="consultant_button" href="/consultant">CONSULTANT</a>
+        <a id="account_button" href="/account">MON COMPTE</a>
+        <a id="settings_button" href="/settings">PARAMÈTRES</a>
         <a id="partners_button" href="/partners">PARTENAIRES</a>
     </div>
     @foreach($errors->all() as $error)
