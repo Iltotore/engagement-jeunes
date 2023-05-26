@@ -5,7 +5,8 @@
 <body>
 @include('app_common', ['message' => "Mes références"])
 <div>
-    <form action="api/references/add" method="get">
+    <form action="api/references/add" method="post">
+        @csrf
         <fieldset>
             <legend>Références</legend>
             <label for="descritpion">Description : <br><textarea name="description" rows="3" cols="40" style="resize: both;" required></textarea></label><br>
