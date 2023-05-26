@@ -92,7 +92,7 @@ class AuthController extends Controller
 
         $request->session()->invalidate();
 
-        $request->session()->regenerateToken();
+       //$request->session()->regenerateToken(); if problem uncomment
 
         return redirect('/home');
     }
