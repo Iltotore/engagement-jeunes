@@ -10,3 +10,6 @@
 		<a id="partners_button" href="/partners">PARTENAIRES</a>
 	</div>
 </div>
+@foreach($errors->all() as $error)
+    <label class="error">{{ $error }}</label><br>
+@endforeach
