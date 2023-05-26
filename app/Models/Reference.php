@@ -53,7 +53,7 @@ class Reference extends Authenticatable
         if($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired reference.");
 
         $this->expire_at = null;
-        $this->registration_token = null;
+        $this->token = null;
         $this->save();
     }
 

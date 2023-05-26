@@ -25,6 +25,11 @@
             <li>{{ $skill }}</li>
         @endforeach
     </ul><br>
+
+    <form action="/api/references/confirm" method="get">
+        <input type="hidden" name="token" value="{{ $reference->token }}">
+        <input type="submit" value="Confirmer la référence">
+    </form>
 </div>
 </body>
 </html>

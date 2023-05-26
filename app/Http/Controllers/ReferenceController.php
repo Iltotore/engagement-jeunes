@@ -68,4 +68,14 @@ class ReferenceController extends Controller {
             return view("reference_display", ["reference" => $reference]);
         } else abort(404);
     }
+
+    public function confirm(Request $request): RedirectResponse | View | Factory {
+        $token = $request->token;
+
+        $reference = Reference::where("token", $token)->first();
+        if($reference) {
+            $reference->confirm();
+            return view("reference_confirm");
+        } else abort(404);
+    }
 }
