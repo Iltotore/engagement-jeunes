@@ -102,4 +102,33 @@
 	a#partners_button {
 		color: var(--partners-color)
 	}
+
+    div.error {
+        display: flex;
+        background-color: red;
+        color: white;
+        font-weight: bold;
+        max-width: 30vw;
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    div.error p {
+        text-align: center;
+        flex-grow: 1;
+        margin: auto;
+    }
+
+    div.error img {
+        flex-grow: 1;
+        max-height: 2em;
+        max-width: 2em;
+        padding: 5px;
+        object-fit: contain;
+    }
 </style>
