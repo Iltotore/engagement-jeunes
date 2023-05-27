@@ -103,9 +103,8 @@
 		color: var(--partners-color)
 	}
 
-    div.error {
+    div.notif {
         display: flex;
-        background-color: red;
         color: white;
         font-weight: bold;
         max-width: 30vw;
@@ -118,17 +117,32 @@
         border-radius: 10px;
     }
 
-    div.error p {
+    div.notif p {
         text-align: center;
         flex-grow: 1;
         margin: auto;
     }
 
-    div.error img {
+    div.notif img {
         flex-grow: 1;
         max-height: 2em;
         max-width: 2em;
         padding: 5px;
         object-fit: contain;
     }
+
+    div.error {
+        background-color: #ff0000;
+    }
+
+    div.ok {
+        background-color: #05B928;
+    }
+
+    div.warn {
+        background-color: orange;
+    }
+
+
+
 </style>

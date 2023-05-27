@@ -20,10 +20,19 @@
         <a id="partners_button" href="/partners">PARTENAIRES</a>
     </div>
     @foreach($errors->all() as $error)
-        <div class="error">
+        <div class="notif error">
             <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche" onclick="closeWidget(this.parentNode)"/>
             <p>{{$error}}</p>
         </div>
+    @endforeach
+
+    @foreach(Session::get("notifications") as $type => $messages) <!--["ok" => [...], "warn" => [...]]-->
+        @foreach($messages as $msg)
+            <div class="notif {{ $type }}">
+                <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche" onclick="closeWidget(this.parentNode)"/>
+                <p>{{$msg}}</p>
+            </div>
+        @endforeach
     @endforeach
 </div>
 </body>
