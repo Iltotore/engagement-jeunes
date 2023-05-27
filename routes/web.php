@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReferenceController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,3 +54,4 @@ Route::post("/api/register", [AuthController::class, "register"]);
 Route::post("/api/references/add", [ReferenceController::class, "add"]);
 Route::post("/api/references/edit", [ReferenceController::class, "edit"]);
 Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
+Route::post("/api/settings", [SettingsController::class, "update"]);
