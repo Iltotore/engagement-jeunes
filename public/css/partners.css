@@ -8,7 +8,7 @@ div#icon_zone{
 	div#icon_zone {
 	  grid-template-columns: 1fr 1fr;
 	}
-  }
+}
 
 div#icon_zone > * {
 	margin: 0.5vw 0.5vw;
