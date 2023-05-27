@@ -3,7 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReferenceController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Authenticate;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,13 +41,13 @@ Route::get("/partners", function () {
 
 Route::get("/settings", function () {
     return view("settings");
-});
+})->middleware("auth");
 
 Route::get("/references", function () {
     return view("references");
-});
+})->middleware("auth");
 
-Route::get("/references/display", [ReferenceController::class, "display"]);
+Route::get("/references/display", [ReferenceController::class, "display"])->middleware("auth");
 
 Route::post("/api/login", [AuthController::class, "login"]);
 Route::post("/api/register", [AuthController::class, "register"]);
