@@ -1,3 +1,12 @@
+<head>
+    <script>
+        console.log("loaded");
+        function closeWidget(widget) {
+            widget.remove();
+        }
+    </script>
+</head>
+<body>
 <div id="top_bars">
     <div id="motto_bar">
         <a href="/home"><img id="logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" height="100%"
@@ -12,9 +21,11 @@
     </div>
     @foreach($errors->all() as $error)
         <div class="error">
-            <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche"/>
+            <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche" onclick="closeWidget(this.parentNode)"/>
             <p>{{$error}}</p>
         </div>
     @endforeach
 </div>
+</body>
+
 
