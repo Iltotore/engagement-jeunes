@@ -41,13 +41,59 @@ img#logo {
 	margin-left: 2.5%;
 }
 
+div#right_side {
+	display: flex;
+	flex-direction: column;
+
+	margin-left: auto;
+	height: 100%;
+}
+
+div#account_management_area {
+	margin-bottom: 0.5vw;
+	margin-top: 0.4vw;
+	margin-left: auto;
+
+	display: flex;
+	flex-direction: row;
+
+	align-items: right;
+	margin-right: 1vw;
+
+	max-width: 60vw;
+}
+
+div#account_management_area * {
+	text-decoration: none;
+	color:black;
+
+	justify-content: right;
+	text-align: right;
+	font-weight:2;
+
+	margin-bottom: auto;
+	margin-top: 0;
+	
+}
+
+div#account_management_area p#account_separation {
+	margin-left: 0.5vw;
+	margin-right: 0.5vw;
+}
+
+div#account_management_area a:hover {
+	text-decoration: underline;
+}
+
 h1#motto_text {
+	vertical-align: bottom;
+
 	justify-content: right;
 	text-align: right;
 	letter-spacing: 0.05em;
 	font-weight:1;
 	margin-bottom: 0.5em;
-	margin-top: 0em;
+	margin-top: auto;
 	margin-right: 0.7em;
 	margin-left: auto;
 	font-size: max(2.7vw,1.3em);

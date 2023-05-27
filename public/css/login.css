@@ -60,3 +60,8 @@ input[type="submit"]{
 	margin: 0.5em 0.5em;
 	cursor: pointer;
 }
+
+/* Prevent unecessary buttons on the toolbar*/
+div#account_management_area * {
+	display: hidden;
+}
