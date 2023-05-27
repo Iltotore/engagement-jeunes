@@ -18,7 +18,7 @@
             <label for="confirm">Confirmer le nouveau mot de passe:<input type="password" name="confirm" ></label><br>
             <label for="first_name">Prénom:<input type="text" name="first_name" value="{{ Auth::user()->first_name }}" required></label><br>
             <label for="last_name">Nom:<input type="text" name="last_name" value="{{ Auth::user()->last_name }}" required></label><br>
-            <label for="birth_date">Date de naissance:<input type="date" name="birth_date" value="{{ Auth::user()->birth_date }}" required></label><br>
+            <label for="birth_date">Date de naissance:<input type="date" name="birth_date" value="2004-01-21" required></label><br>
             <input type="submit" value="Modifier">
         </fieldset>
     </form>
