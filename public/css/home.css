@@ -53,13 +53,14 @@ div#home_grid div h3 {
 div#home_links_grid {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr 1fr;
-	margin-top: 4em;
-	gap: 2em;
+	margin-top: 3.3vw;
+	gap: 1.9vw;
 }
 a.home_box {
 	border: 0.4em solid;
-	width: 14em;
-	height: 14em;
+	width: 11.5vw;
+	min-width: 8em;
+	height: max(11.5vw,fit-content);
 	text-decoration: none;
 	color:white;
 	display: flex;
@@ -72,12 +73,12 @@ div.home_box_top_part p {
 	margin: 0;
 }
 div.home_box_top_part p:nth-child(1) {
-	font-size: 0.9em;
+	font-size: max(1.5vw,0.6em);
 	padding-top: 0.4em;
 	padding-bottom: 0.2em;
 }
 div.home_box_top_part p:nth-child(2) {
-	font-size: 1em;
+	font-size: max(1.7vw,0.6em);
 	padding-top: 0.2em;
 	padding-bottom: 0.4em;
 }
@@ -88,10 +89,17 @@ div.home_box_bottom_part p {
 	margin: 0;
 	color: grey;
 	text-align: left;
-	font-size: 1.25em;
+	font-size: max(1vw,0.95em);
 	padding: 0.4em;
 	word-wrap: break-word;
 	hyphens: auto;
+}
+
+@media (max-width: 768px) {
+	div#home_links_grid {
+	  margin: 0.5vw;
+	  margin-top: 0vw;
+	}
 }
 
 a#home_link_valorisation {
