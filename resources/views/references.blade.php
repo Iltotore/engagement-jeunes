@@ -2,17 +2,29 @@
 <head>
     @include('head_common')
     <link rel="stylesheet" href="{{ asset('css/references.css') }}">
+    <script src="{{ asset("js/references.js") }}"></script>
 </head>
 <body>
 @include('app_common', ['message' => "Mes références"])
 <div>
+    <div style="visibility: hidden">
+        <form id="remove_form" action="/api/references/remove" method="post">
+            @csrf
+            <input name="selected" type="text">
+        </form>
+    </div>
+    <div class="reference_actions">
+        <button onclick="removeSelectedReferences()">Supprimer</button>
+    </div>
     <h1>Liste des références:</h1>
     <div class="reference_list">
         @foreach(Auth::user()->references as $ref)
             <div class="reference">
                 <input class="select" name="{{ $ref->id }}" type="checkbox">
-                <label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
-                <label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+                <div class="reference_content">
+                    <label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
+                    <label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+                </div>
             </div>
         @endforeach
     </div>

@@ -15,8 +15,6 @@ use Illuminate\View\View;
 class ReferenceController extends Controller {
 
     public function add(Request $request): RedirectResponse {
-        $user = Auth::user();
-
         $infos = $request->validate([
             "description" => ["required"],
             "area" => ["required"],
@@ -99,5 +97,19 @@ class ReferenceController extends Controller {
             $reference->confirm();
             return view("reference_confirm");
         } else abort(404);
+    }
+
+    public function remove(Request $request): RedirectResponse {
+        $user = Auth::user();
+        $ids = explode(",", $request->selected ?? "");
+        foreach($ids as $id) {
+            $reference = Reference::where("id", $id)->where("user_id", $user->id);
+            if($reference) {
+                $reference->delete();
+            } else return redirect()
+                ->intended("/references")
+                ->withErrors(["Une référence n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+        return redirect()->intended("/references")->with(["notifications" => ["Références supprimées"]]);
     }
 }

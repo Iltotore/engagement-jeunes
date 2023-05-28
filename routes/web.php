@@ -54,3 +54,4 @@ Route::post("/api/register", [AuthController::class, "register"]);
 Route::post("/api/references/add", [ReferenceController::class, "add"]);
 Route::post("/api/references/edit", [ReferenceController::class, "edit"]);
 Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
+Route::post("/api/references/remove", [ReferenceController::class, "remove"]);
