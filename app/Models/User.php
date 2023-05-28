@@ -64,9 +64,6 @@ class User extends Authenticatable
 
     public function unconfirm(): void
     {
-        $time = App::make(TimeService::class);
-
-        $this->expire_at = date(DateTimeInterface::ATOM, $time->currentTime(3600 * 24));
         $this->registration_token = uniqid();
         $this->save();
     }
