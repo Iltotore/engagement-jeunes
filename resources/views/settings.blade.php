@@ -4,9 +4,7 @@
 </head>
 <body>
 @include('app_common', ['message' => "Mon profil"])
-@foreach($errors->all() as $error)
-    <label class="error">{{ $error }}</label><br>
-@endforeach
+
 <div>
     <form action="/updatesettings" method="post">
         <fieldset>
