@@ -26,7 +26,7 @@
         </div>
     @endforeach
 
-    @foreach(Session::get("notifications") as $type => $messages) <!--["ok" => [...], "warn" => [...]]-->
+    @foreach(Session::get("notifications") ?? [] as $type => $messages) <!--["ok" => [...], "warn" => [...]]-->
         @foreach($messages as $msg)
             <div class="notif {{ $type }}">
                 <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche" onclick="closeWidget(this.parentNode)"/>
