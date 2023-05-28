@@ -27,8 +27,8 @@ class SettingsController extends Controller
         ]);
         $user = $request->user();
         $errors = [];
-        if (! Hash::check($request->password, $user->password)) $errors += ['password' => 'Mot de passe incorect'];
-        if ( Hash::check($request->new_password , $user->password)) $errors += ['password' => 'Le nouveau mot de passe doit être différent de l\'ancien'];
+        if (!Hash::check($request->password, $user->password)) $errors += ['password' => 'Mot de passe incorect'];
+        if (Hash::check($request->new_password, $user->password)) $errors += ['password' => 'Le nouveau mot de passe doit être différent de l\'ancien'];
         if ($request->new_password != $request->confirm) $errors += ['new_password' => 'Les deux mots de passe ne correspondent pas.'];
 
         if (sizeof($errors) > 0)
@@ -36,17 +36,18 @@ class SettingsController extends Controller
                 ->intended("/settings")
                 ->withErrors($errors)
                 ->withInput($request->except("password", "confirm"));
-        else{
-            if ($request->new_password != null){
+        else {
+            if ($request->new_password != null) {
                 $user->password = $request->new_password;
                 $user->save();
-                Log::info("this is the new password ".$user->password);
+                $request->session()->flush();
             }
             if ($request->email != $user->email) {
                 $user->email = $request->email;
                 $user->save();
                 $user->unconfirm();
-                Mail::to($user->email)->send(new RegisterMail($user));
+                $request->session()->flush();
+                //Mail::to($user->email)->send(new RegisterMail($user)); ACTIVATE IT LATER
 
             }
             $user->first_name = $request->first_name;
