@@ -15,8 +15,6 @@ use Illuminate\View\View;
 class ReferenceController extends Controller {
 
     public function add(Request $request): RedirectResponse {
-        $user = Auth::user();
-
         $infos = $request->validate([
             "description" => ["required"],
             "area" => ["required"],
@@ -34,9 +32,9 @@ class ReferenceController extends Controller {
         $softSkills = explode(",", $infos["soft_skills"]);
         $duration = strtotime($infos["end_date"]) - strtotime($infos["begin_date"]);
 
-        if($duration < 0) return redirect()
-          ->intended("/references")
-          ->withErrors(["Begin date is later than end date"]);
+        if ($duration < 0) return redirect()
+            ->intended("/references")
+            ->withErrors(["Begin date is later than end date"]);
 
         $reference = Reference::createUnconfirmed(
             Auth::user(),
@@ -56,20 +54,24 @@ class ReferenceController extends Controller {
         Mail::to($infos["email"])->send(new ReferenceMail($reference));
 
         return redirect()
-          ->intended("/references")
-          ->with(["notifications" => ["Référence ajoutée. En attente de confirmation."]]);
+            ->intended("/references")
+            ->with([
+                "notifications" => [
+                    "ok" => ["Référence ajoutée. En attente de confirmation."]
+                ]
+            ]);
     }
 
-    public function display(Request $request): RedirectResponse | View | Factory {
+    public function display(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
         $reference = Reference::where("token", $token)->first();
-        if($reference) {
+        if ($reference) {
             return view("reference_display", ["reference" => $reference]);
         } else abort(404);
     }
 
-    public function edit(Request $request): RedirectResponse | View | Factory {
+    public function edit(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
         $infos = $request->validate([
@@ -81,23 +83,49 @@ class ReferenceController extends Controller {
         info($infos["soft_skills"]);
 
         $reference = Reference::where("token", $token)->first();
-        if($reference) {
+        if ($reference) {
             $reference->hard_skill_values = $infos["hard_skills"];
             $reference->soft_skill_values = $infos["soft_skills"];
             $reference->save();
             return redirect()
-              ->intended("/references/display?token=".$token)
-              ->with(["notifications" => ["Référence modifiée"]]);
+                ->intended("/references/display?token=" . $token)
+                ->with([
+                    "notifications" => [
+                        "ok" => ["Référence modifiée"]
+                    ]
+                ]);
+
         } else abort(404);
     }
 
-    public function confirm(Request $request): RedirectResponse | View | Factory {
+    public function confirm(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
         $reference = Reference::where("token", $token)->first();
-        if($reference) {
+        if ($reference) {
             $reference->confirm();
             return view("reference_confirm");
         } else abort(404);
+    }
+
+    public function remove(Request $request): RedirectResponse {
+        $user = Auth::user();
+        $ids = explode(",", $request->selected ?? "");
+        foreach ($ids as $id) {
+            $reference = Reference::where("id", $id)->where("user_id", $user->id);
+            if ($reference) {
+                $reference->delete();
+            } else return redirect()
+                ->intended("/references")
+                ->withErrors(["Une référence n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+
+        return redirect()
+            ->intended("/references")
+            ->with([
+                "notifications" => [
+                    "ok" => ["Références supprimées"]
+                ]
+            ]);
     }
 }
