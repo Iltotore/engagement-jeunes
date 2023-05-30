@@ -75,6 +75,15 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    public function showConsult(Request $request): RedirectResponse|View|Factory {
+        $token = $request->token;
+
+        $consult = Consult::where("token", $token)->first();
+        if ($consult) {
+            return view("consult", ["consult" => $consult]);
+        } else abort(404);
+    }
+
     public function edit(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
