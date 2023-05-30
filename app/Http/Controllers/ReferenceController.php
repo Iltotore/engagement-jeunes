@@ -183,4 +183,26 @@ class ReferenceController extends Controller {
                 ]
             ]);
     }
+
+    public function removeConsult(Request $request): RedirectResponse {
+        $user = Auth::user();
+        $ids = explode(",", $request->selected ?? "");
+        info($ids);
+        foreach ($ids as $id) {
+            $consult = Consult::where("id", $id)->where("user_id", $user->id);
+            if ($consult) {
+                $consult->delete();
+            } else return redirect()
+                ->intended("/references")
+                ->withErrors(["Une consultation n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+
+        return redirect()
+            ->intended("/references")
+            ->with([
+                "notifications" => [
+                    "ok" => ["Consultations supprimées"]
+                ]
+            ]);
+    }
 }

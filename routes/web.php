@@ -60,3 +60,4 @@ Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
 Route::post("/api/settings", [SettingsController::class, "update"]);
 Route::post("/api/references/remove", [ReferenceController::class, "remove"]);
 Route::post("/api/references/send", [ReferenceController::class, "sendConsult"]);
+Route::post("/api/consults/remove", [ReferenceController::class, "removeConsult"]);

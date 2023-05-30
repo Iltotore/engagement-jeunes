@@ -8,16 +8,21 @@
 @include('app_common', ['message' => "Mes références"])
 <div>
     <div hidden>
-        <form id="remove_form" action="/api/references/remove" method="post">
+        <form id="ref_remove_form" action="/api/references/remove" method="post">
             @csrf
             <input name="selected" type="text">
         </form>
 
-        <form id="send_form" action="/api/references/send" method="post">
+        <form id="ref_send_form" action="/api/references/send" method="post">
             @csrf
             <input name="selected" type="text">
             <input name="email" type="email">
             <input name="duration" type="number">
+        </form>
+
+        <form id="consult_remove_form" action="/api/consults/remove" method="post">
+            @csrf
+            <input name="selected" type="text">
         </form>
     </div>
     <div class="reference_actions">
@@ -70,7 +75,7 @@
     <div class="consult_list">
         @foreach(Auth::user()->consults as $consult)
             <div class="consult">
-                <input class="select" name="{{ $ref->id }}" type="checkbox">
+                <input class="select" name="{{ $consult->id }}" type="checkbox">
                 <div class="consult_content">
                     <!-- TODO Add email column to consults --> 
                     <label>Envoyée à: ...</label>
