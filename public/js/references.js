@@ -26,10 +26,21 @@ function removeSelectedConsults() {
     form.submit()
 }
 
+function toggleMenu(widget) {
+    widget.hidden = !widget.hidden
+}
 
 function toggleConsultMenu() {
-    const consultMenu = document.getElementById("consult_menu")
-    consultMenu.hidden = !consultMenu.hidden
+    toggleMenu(document.getElementById("consult_menu"))
+}
+
+function toggleReferences(button) {
+    const consult = button.parentNode
+    const container = consult.querySelector(".reference_container")
+
+    //TODO Button icon open/close animation
+
+    toggleMenu(container);
 }
 
 function sendReferences() {

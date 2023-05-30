@@ -80,7 +80,8 @@
                     <!-- TODO Add email column to consults --> 
                     <label>Envoyée à: ...</label>
                     <label>References: </label>
-                    <div>
+                    <button onclick="toggleReferences(this)">+</button>
+                    <div class="reference_container" hidden>
                         @foreach($consult->references as $ref)
                         <div class="reference_content">
                             <label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
