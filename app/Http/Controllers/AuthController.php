@@ -31,14 +31,14 @@ class AuthController extends Controller
             if (!Auth::user()->isConfirmed()) {
                 $request->session()->flush();
                 return redirect()
-                    ->intended("/login")
+                    ->back()
                     ->withErrors(['email' => 'Mail non confirmé']);
             }
             $request->session()->start();
             return redirect()->to($redirect);
         } else {
             return redirect()
-                ->intended("/login")
+                ->back()
                 ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
                 ->withInput($request->except("password", "confirm"));
         }
@@ -62,7 +62,7 @@ class AuthController extends Controller
 
         if (sizeof($errors) > 0)
             return redirect()
-                ->intended("/login")
+                ->back()
                 ->withErrors($errors)
                 ->withInput($request->except("password", "confirm"));
 
