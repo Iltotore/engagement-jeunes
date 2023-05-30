@@ -2,7 +2,7 @@
 <head>
     @include('head_common')
     <link rel="stylesheet" href="{{ asset('css/references.css') }}">
-    <script src="{{ asset("js/references.js") }}"></script>
+    <script src="{{ asset('js/references.js') }}"></script>
 </head>
 <body>
 @include('app_common', ['message' => "Mes références"])
