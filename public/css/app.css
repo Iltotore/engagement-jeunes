@@ -73,7 +73,7 @@ div#account_management_area * {
 
 	margin-bottom: auto;
 	margin-top: 0;
-	
+
 }
 
 div#account_management_area p#account_separation {
@@ -140,4 +140,44 @@ a#settings_button {
 
 a#partners_button {
 	color: var(--partners-color)
+}
+
+div.notif {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    max-width: 30vw;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+div.notif p {
+    text-align: center;
+    flex-grow: 1;
+    margin: auto;
+}
+
+div.notif img {
+    flex-grow: 1;
+    max-height: 2em;
+    max-width: 2em;
+    padding: 5px;
+    object-fit: contain;
+}
+
+div.error {
+    background-color: #ff0000;
+}
+
+div.ok {
+    background-color: #05B928;
+}
+
+div.warn {
+    background-color: orange;
 }
