@@ -49,7 +49,7 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
-Route::get("/references/display", [ReferenceController::class, "display"])->middleware("auth");
+Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
 Route::post("/api/login", [AuthController::class, "login"]);
