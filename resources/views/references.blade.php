@@ -63,6 +63,30 @@
             <input type="submit" value="Ajouter référence">
         </fieldset>
     </form>
+    <div class="consult_actions">
+        <button onclick="removeSelectedConsults()">Supprimer</button>
+    </div>
+    <h1>Liste des consultations:</h1>
+    <div class="consult_list">
+        @foreach(Auth::user()->consults as $consult)
+            <div class="consult">
+                <input class="select" name="{{ $ref->id }}" type="checkbox">
+                <div class="consult_content">
+                    <!-- TODO Add email column to consults --> 
+                    <label>Envoyée à: ...</label>
+                    <label>References: </label>
+                    <div>
+                        @foreach($consult->references as $ref)
+                        <div class="reference_content">
+                            <label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
+                            <label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
 </body>
 </html>
