@@ -125,7 +125,7 @@ class ReferenceController extends Controller {
         $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
         foreach ($ids as $id) {
-            $reference = Reference::where("id", $id)->where("user_id", $user->id);
+            $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
             if ($reference) {
                 $reference->delete();
             } else return redirect()
@@ -189,7 +189,7 @@ class ReferenceController extends Controller {
         $ids = explode(",", $request->selected ?? "");
         info($ids);
         foreach ($ids as $id) {
-            $consult = Consult::where("id", $id)->where("user_id", $user->id);
+            $consult = Consult::where("id", $id)->where("user_id", $user->id)->first();
             if ($consult) {
                 $consult->delete();
             } else return redirect()

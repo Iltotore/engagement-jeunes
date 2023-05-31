@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\App;
 use Nette\InvalidStateException;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
 
     use HasFactory;
 
@@ -26,40 +25,41 @@ class User extends Authenticatable
     /**
      * Add a mutator to ensure hashed passwords
      */
-    public function setPasswordAttribute($password)
-    {
+    public function setPasswordAttribute($password) {
         $this->attributes['password'] = bcrypt($password);
     }
 
-    public function references()
-    {
+    public function references() {
         return $this->hasMany(Reference::class, "user_id");
     }
 
-    public function consults()
-    {
+    public function consults() {
         return $this->hasMany(Consult::class, "user_id");
     }
 
-    public function hasExpired(): bool
-    {
+    public function hasExpired(): bool {
         $time = App::make(TimeService::class);
         return $this->isConfirmed() || $time->currentTime(0) >= strtotime($this->expire_at);
     }
 
-    public function isConfirmed(): bool
-    {
+    public function isConfirmed(): bool {
         return $this->expire_at == null && $this->registration_token == null;
     }
 
-    public function confirm(): void
-    {
-        if ($this->isConfirmed()) throw new InvalidStateException("Cannot confirm already confirmed user.");
-        if ($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired user.");
+    public function confirm(): void {
+        if($this->isConfirmed()) throw new InvalidStateException("Cannot confirm already confirmed user.");
+        if($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired user.");
 
         $this->expire_at = null;
         $this->registration_token = null;
         $this->save();
+    }
+
+    protected static function booted () {
+        static::deleting(function(User $user) {
+             foreach($user->references()->get() as $ref) $ref->delete();
+             foreach($user->consults()->get() as $consult) $consult->delete();
+        });
     }
 
     public function unconfirm(): void
