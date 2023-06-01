@@ -7,14 +7,32 @@
 <body>
 @include('app_common', ['message' => "Mes références"])
 <div>
-    <div style="visibility: hidden">
+    <div hidden>
         <form id="remove_form" action="/api/references/remove" method="post">
             @csrf
             <input name="selected" type="text">
         </form>
+
+        <form id="send_form" action="/api/references/send" method="post">
+            @csrf
+            <input name="selected" type="text">
+            <input name="email" type="email">
+            <input name="duration" type="number">
+        </form>
     </div>
     <div class="reference_actions">
         <button onclick="removeSelectedReferences()">Supprimer</button>
+        <button onclick="toggleConsultMenu()">Envoyer à un consultant</button>
+        <div id="consult_menu" hidden>
+            <input name="email" type="email">
+            <select name="duration">
+                <option value="1">1 Jour</option>
+                <option value="7" selected>1 Semaine</option>
+                <option value="14">2 Semaines</option>
+                <option value="30">1 Mois</option>
+            </select>
+            <button onclick="sendReferences()">Envoyer</button>
+        </div>
     </div>
     <h1>Liste des références:</h1>
     <div class="reference_list">
