@@ -21,4 +21,10 @@ class Consult extends Authenticatable
     {
         return $this->belongsToMany(Reference::class);
     }
+
+    protected static function booted () {
+        static::deleting(function(Consult $consult) {
+             $consult->references()->detach();
+        });
+    }
 }

@@ -2,19 +2,42 @@
 <head>
     @include('head_common')
     <link rel="stylesheet" href="{{ asset('css/references.css') }}">
-    <script src="{{ asset("js/references.js") }}"></script>
+    <script src="{{ asset('js/references.js') }}"></script>
 </head>
 <body>
 @include('app_common', ['message' => "Mes références"])
 <div>
-    <div style="visibility: hidden">
-        <form id="remove_form" action="/api/references/remove" method="post">
+    <div hidden>
+        <form id="ref_remove_form" action="/api/references/remove" method="post">
+            @csrf
+            <input name="selected" type="text">
+        </form>
+
+        <form id="ref_send_form" action="/api/references/send" method="post">
+            @csrf
+            <input name="selected" type="text">
+            <input name="email" type="email">
+            <input name="duration" type="number">
+        </form>
+
+        <form id="consult_remove_form" action="/api/consults/remove" method="post">
             @csrf
             <input name="selected" type="text">
         </form>
     </div>
     <div class="reference_actions">
         <button onclick="removeSelectedReferences()">Supprimer</button>
+        <button onclick="toggleConsultMenu()">Envoyer à un consultant</button>
+        <div id="consult_menu" hidden>
+            <input name="email" type="email">
+            <select name="duration">
+                <option value="1">1 Jour</option>
+                <option value="7" selected>1 Semaine</option>
+                <option value="14">2 Semaines</option>
+                <option value="30">1 Mois</option>
+            </select>
+            <button onclick="sendReferences()">Envoyer</button>
+        </div>
     </div>
     <h1>Liste des références:</h1>
     <div class="reference_list">
@@ -45,6 +68,31 @@
             <input type="submit" value="Ajouter référence">
         </fieldset>
     </form>
+    <div class="consult_actions">
+        <button onclick="removeSelectedConsults()">Supprimer</button>
+    </div>
+    <h1>Liste des consultations:</h1>
+    <div class="consult_list">
+        @foreach(Auth::user()->consults as $consult)
+            <div class="consult">
+                <input class="select" name="{{ $consult->id }}" type="checkbox">
+                <div class="consult_content">
+                    <!-- TODO Add email column to consults --> 
+                    <label>Envoyée à: ...</label>
+                    <label>References: </label>
+                    <button onclick="toggleReferences(this)">+</button>
+                    <div class="reference_container" hidden>
+                        @foreach($consult->references as $ref)
+                        <div class="reference_content">
+                            <label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
+                            <label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
 </div>
 </body>
 </html>

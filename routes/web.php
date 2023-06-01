@@ -49,7 +49,8 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
-Route::get("/references/display", [ReferenceController::class, "display"])->middleware("auth");
+Route::get("/references/display", [ReferenceController::class, "display"]);
+Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
 Route::post("/api/login", [AuthController::class, "login"]);
 Route::post("/api/register", [AuthController::class, "register"]);
@@ -58,4 +59,5 @@ Route::post("/api/references/edit", [ReferenceController::class, "edit"]);
 Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
 Route::post("/api/settings", [SettingsController::class, "update"]);
 Route::post("/api/references/remove", [ReferenceController::class, "remove"]);
-
+Route::post("/api/references/send", [ReferenceController::class, "sendConsult"]);
+Route::post("/api/consults/remove", [ReferenceController::class, "removeConsult"]);

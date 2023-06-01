@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConsultMail;
+use App\Models\Consult;
 use App\Models\Reference;
 use App\Models\User;
 use App\Mail\ReferenceMail;
+use App\Services\TimeService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
@@ -71,6 +75,15 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    public function showConsult(Request $request): RedirectResponse|View|Factory {
+        $token = $request->token;
+
+        $consult = Consult::where("token", $token)->first();
+        if ($consult) {
+            return view("consult", ["consult" => $consult]);
+        } else abort(404);
+    }
+
     public function edit(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
@@ -112,7 +125,7 @@ class ReferenceController extends Controller {
         $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
         foreach ($ids as $id) {
-            $reference = Reference::where("id", $id)->where("user_id", $user->id);
+            $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
             if ($reference) {
                 $reference->delete();
             } else return redirect()
@@ -125,6 +138,70 @@ class ReferenceController extends Controller {
             ->with([
                 "notifications" => [
                     "ok" => ["Références supprimées"]
+                ]
+            ]);
+    }
+
+    public function sendConsult(Request $request): RedirectResponse {
+        $user = Auth::user();
+
+        $time = App::make(TimeService::class);
+
+        $infos = $request->validate([
+            "selected" => [],
+            "duration" => ["required"],
+            "email" => ["required", "email"]
+        ]);
+
+        $ids = explode(",", $infos["selected"] ?? "");
+
+        $references = [];
+
+        foreach ($ids as $id) {
+            $reference = Reference::where("id", $id)->where("user_id", $user->id);
+            if ($reference) $references[] = $reference->first();
+            else return redirect()
+                ->intended("/references")
+                ->withErrors(["Une référence n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+
+        $consult = Consult::create([
+            "user_id" => $user->id,
+            "token" => uniqid(),
+            "expire_at" => $time->currentTime($infos["duration"]*24*3600)
+        ]);
+
+        foreach($references as $reference) $consult->references()->attach($reference->id);
+
+        Mail::to($infos["email"])->send(new ConsultMail($consult));
+
+        return redirect()
+            ->intended("/references")
+            ->with([
+                "notifications" => [
+                    "ok" => ["Références envoyées à " . $infos["email"]]
+                ]
+            ]);
+    }
+
+    public function removeConsult(Request $request): RedirectResponse {
+        $user = Auth::user();
+        $ids = explode(",", $request->selected ?? "");
+        info($ids);
+        foreach ($ids as $id) {
+            $consult = Consult::where("id", $id)->where("user_id", $user->id)->first();
+            if ($consult) {
+                $consult->delete();
+            } else return redirect()
+                ->intended("/references")
+                ->withErrors(["Une consultation n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+
+        return redirect()
+            ->intended("/references")
+            ->with([
+                "notifications" => [
+                    "ok" => ["Consultations supprimées"]
                 ]
             ]);
     }

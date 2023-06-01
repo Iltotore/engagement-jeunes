@@ -58,6 +58,12 @@ class Reference extends Authenticatable
         $this->save();
     }
 
+    protected static function booted () {
+        static::deleting(function(Reference $reference) {
+             $reference->consults()->detach();
+        });
+    }
+
     public static function createUnconfirmed(
         User $owner,
         string $description,
