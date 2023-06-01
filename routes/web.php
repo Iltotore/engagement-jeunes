@@ -49,6 +49,7 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
+Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
 

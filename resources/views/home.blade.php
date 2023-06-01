@@ -42,7 +42,7 @@
 					</div>
 				</a>
 
-				<a id="home_link_confirmation" class="home_box" href="/referent">
+				<div id="home_link_confirmation" class="home_box">
 					<div class="home_box_top_part">
 						<p>2ème étape</p>
 						<p>la confirmation</p>
@@ -50,9 +50,9 @@
 					<div class="home_box_bottom_part">
 						<p>Confirmez cette expérience et ce que vous avez pu constater au contact de ce jeune.</p>
 					</div>
-				</a>
+				</div>
 
-				<a id="home_link_consultation" class="home_box" href="/consultant">
+				<div id="home_link_consultation" class="home_box">
 					<div class="home_box_top_part">
 						<p>3ème étape</p>
 						<p>la consultation</p>
@@ -60,7 +60,7 @@
 					<div class="home_box_bottom_part">
 						<p>Validez cet engagement en prenant en compte sa valeur.</p>
 					</div>
-				</a>
+				</div>
 			</div>
 		</div>
 	</body>

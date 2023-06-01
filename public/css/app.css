@@ -1,0 +1,183 @@
+body {
+	--color1: #fafafa;
+	--color2: #eaeaea;
+	--dark-color: #cbcbcb;
+	--less-dark-color: #cfcfcf;
+
+	--jeune-color: rgb(218, 8, 89);
+	--referent-color: green;
+	--consultant-color: rgb(0, 153, 255);
+	--partners-color: grey;
+
+	--jeune-alt-color: rgb(255, 207, 225);
+	--referent-alt-color: rgb(182, 214, 38);
+	--consultant-alt-color: rgb(177, 224, 255);
+
+	margin: 0;
+	text-align:center;
+	font-family: 'Arial', sans-serif;
+	overflow: auto;
+	background-image: radial-gradient(circle at top, rgba(250,250,250,1) 90%, rgba(210,210,210,1) 99%);
+
+	/* Prevents the background from not filling the whole page */
+	/* Raphaël, please don't remove this again. ;) */
+	min-height: 100vh;
+}
+
+div#motto_bar {
+	height: 10vw;
+	min-height: 100px;
+
+	display: flex;
+	flex-direction: row;
+	vertical-align: bottom;
+	text-align: left;
+	max-width: 100vw;
+	background-image: radial-gradient(circle at bottom 0% left 21%, var(--color1) , var(--dark-color) 20%);
+}
+
+img#logo {
+	height: 100%;
+	margin-left: 2.5%;
+}
+
+div#right_side {
+	display: flex;
+	flex-direction: column;
+
+	margin-left: auto;
+	height: 100%;
+}
+
+div#account_management_area {
+	margin-bottom: 0.5vw;
+	margin-top: 0.4vw;
+	margin-left: auto;
+
+	display: flex;
+	flex-direction: row;
+
+	align-items: right;
+	margin-right: 1vw;
+
+	max-width: 60vw;
+}
+
+div#account_management_area * {
+	text-decoration: none;
+	color:black;
+
+	justify-content: right;
+	text-align: right;
+	font-weight:2;
+
+	margin-bottom: auto;
+	margin-top: 0;
+
+}
+
+div#account_management_area p#account_separation {
+	margin-left: 0.5vw;
+	margin-right: 0.5vw;
+}
+
+div#account_management_area a:hover {
+	text-decoration: underline;
+}
+
+h1#motto_text {
+	vertical-align: bottom;
+
+	justify-content: right;
+	text-align: right;
+	letter-spacing: 0.05em;
+	font-weight:1;
+	margin-bottom: 0.5em;
+	margin-top: auto;
+	margin-right: 0.7em;
+	margin-left: auto;
+	font-size: max(2.7vw,1.3em);
+	color: white;
+	align-self: flex-end;
+
+	word-wrap: break-word;
+	max-width: 60vw;
+}
+
+div#tab_bar {
+	display: flex;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+
+	width: fit-content;
+
+	justify-content: center;
+	max-height: fit-content;
+	background-image: radial-gradient(circle at top 0% left 20%, var(--color2), var(--less-dark-color) 40%);
+
+	gap: 3vw;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	padding-top: 0.8vw;
+	padding-bottom: 0.8vw;
+}
+
+div#tab_bar a {
+	flex-grow: 1;
+	text-decoration: none;
+	font-weight: lighter;
+	font-size: max(1.3vw,1em);
+}
+
+a#account_button {
+	color: var(--jeune-color)
+}
+
+a#settings_button {
+	color: var(--referent-color)
+}
+
+a#partners_button {
+	color: var(--partners-color)
+}
+
+div.notif {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    max-width: 30vw;
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    align-items: center;
+    border-radius: 10px;
+}
+
+div.notif p {
+    text-align: center;
+    flex-grow: 1;
+    margin: auto;
+}
+
+div.notif img {
+    flex-grow: 1;
+    max-height: 2em;
+    max-width: 2em;
+    padding: 5px;
+    object-fit: contain;
+}
+
+div.error {
+    background-color: #ff0000;
+}
+
+div.ok {
+    background-color: #05B928;
+}
+
+div.warn {
+    background-color: orange;
+}
