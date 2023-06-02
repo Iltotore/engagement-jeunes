@@ -27,11 +27,17 @@ function removeSelectedConsults() {
 }
 
 function toggleMenu(widget) {
-    widget.hidden = !widget.hidden
+    const old = widget.hidden
+    for(let node of Array.from(document.getElementById("actions_menu").childNodes)) node.hidden = true
+    widget.hidden = !old
 }
 
 function toggleConsultMenu() {
     toggleMenu(document.getElementById("consult_menu"))
+}
+
+function toggleAddMenu() {
+    toggleMenu(document.getElementById("add_menu"))
 }
 
 function toggleReferences(button) {
