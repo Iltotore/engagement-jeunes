@@ -49,6 +49,15 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
+Route::get("/generate/html", function () {
+    return view("generate_reference_data");
+})->middleware("auth");
+Route::get("/generate/pdf", function () {
+    $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML(view("generate_reference_data"));
+    return $pdf->stream();
+})->middleware("auth");
+
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
