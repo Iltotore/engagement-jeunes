@@ -48,7 +48,8 @@
                 <input type="submit" value="Ajouter référence">
             </fieldset>
             </form>
-            <div id="consult_menu" hidden>
+            <fieldset id="consult_menu" hidden>
+                <legend>Envoyer à un consultant</legend>
                 <input name="email" type="email">
                 <select name="duration">
                     <option value="1">1 Jour</option>
