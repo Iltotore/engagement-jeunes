@@ -27,11 +27,17 @@ function removeSelectedConsults() {
 }
 
 function toggleMenu(widget) {
-    widget.hidden = !widget.hidden
+    const old = widget.hidden
+    for(let node of Array.from(document.getElementById("actions_menu").childNodes)) node.hidden = true
+    widget.hidden = !old
 }
 
 function toggleConsultMenu() {
     toggleMenu(document.getElementById("consult_menu"))
+}
+
+function toggleAddMenu() {
+    toggleMenu(document.getElementById("add_menu"))
 }
 
 function toggleReferences(button) {
@@ -44,8 +50,8 @@ function toggleReferences(button) {
 }
 
 function sendReferences() {
-    const emailInput = document.querySelector("div#consult_menu > input[name='email']")
-    const durationInput = document.querySelector("div#consult_menu > select[name='duration']")
+    const emailInput = document.querySelector("#consult_menu > input[name='email']")
+    const durationInput = document.querySelector("#consult_menu > select[name='duration']")
 
     const form = document.getElementById("ref_send_form")
     const selected = form.querySelector('input[name="selected"]')
