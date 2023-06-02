@@ -1,6 +1,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     @include('head_common')
+    <link rel="stylesheet" href="{{ asset('css/registered.css') }}">
 </head>
 <body>
   @include('app_common', ['message' => "Mail d'inscription envoyé !"])
