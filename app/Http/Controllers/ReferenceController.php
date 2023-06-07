@@ -27,8 +27,8 @@ class ReferenceController extends Controller {
             "begin_date" => ["date", "required"],
             "end_date" => ["date", "required"],
             "email" => ["email", "required"],
-            "first_name" => ["required", "max:50"],
-            "last_name" => ["required", "max:50"],
+            "first_name" => ["required", "max:50", "regex:/[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F}]+$/u"],
+            "last_name" => ["required", "max:50", "regex:/[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F}]+$/u"],
             "birth_date" => ["date", "required"],
         ]);
 
