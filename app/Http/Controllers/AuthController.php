@@ -50,8 +50,8 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
             'confirm' => ['required'],
-            'first_name' => ['required'],
-            'last_name' => ['required'],
+            'first_name' => ['required', 'max:50'],
+            'last_name' => ['required', 'max:50'],
             'birth_date' => ['required', 'date'],
         ]);
 

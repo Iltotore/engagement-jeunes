@@ -21,15 +21,15 @@ class SettingsController extends Controller
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
-            'first_name' => ['required'],
-            'last_name' => ['required'],
+            'first_name' => ['required', 'max:50'],
+            'last_name' => ['required', 'max:50'],
             'birth_date' => ['required', 'date'],
         ]);
         $user = $request->user();
         $errors = [];
-        if (User::where("email", $request->email)->first()) $errors += ['email' => 'Cet email est déjà utilisé'];
+        if ($request->email != $user->email && User::where("email", $request->email)->first()) $errors += ['email' => 'Cet email est déjà utilisé'];
         if (!Hash::check($request->password, $user->password)) $errors += ['password' => 'Mot de passe incorect'];
-        if (Hash::check($request->new_password, $user->password)) $errors += ['password' => 'Le nouveau mot de passe doit être différent de l\'ancien'];
+        if ($request->new_password != null && Hash::check($request->new_password, $user->password)) $errors += ['password' => 'Le nouveau mot de passe doit être différent de l\'ancien'];
         if ($request->new_password != $request->confirm) $errors += ['new_password' => 'Les deux mots de passe ne correspondent pas.'];
 
         if (sizeof($errors) > 0)
@@ -58,6 +58,11 @@ class SettingsController extends Controller
             Log::info("validated bitch");
             return redirect()
                 ->intended("/settings")
+                ->with([
+                    "notifications" => [
+                        "ok" => ["Paramètres mis à jour"]
+                    ]
+                ])
                 ->withInput($request->except("password", "confirm"));
         }
     }
