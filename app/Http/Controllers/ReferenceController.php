@@ -20,15 +20,15 @@ class ReferenceController extends Controller {
 
     public function add(Request $request): RedirectResponse {
         $infos = $request->validate([
-            "description" => ["required"],
-            "area" => ["required"],
+            "description" => ["required", "max:100"],
+            "area" => ["required", "max:50"],
             "hard_skills" => ["required"],
             "soft_skills" => ["required"],
             "begin_date" => ["date", "required"],
             "end_date" => ["date", "required"],
             "email" => ["email", "required"],
-            "first_name" => ["required"],
-            "last_name" => ["required"],
+            "first_name" => ["required", "max:50"],
+            "last_name" => ["required", "max:50"],
             "birth_date" => ["date", "required"],
         ]);
 
@@ -88,8 +88,8 @@ class ReferenceController extends Controller {
         $token = $request->token;
 
         $infos = $request->validate([
-            "hard_skills" => ["required"],
-            "soft_skills" => ["required"]
+            "hard_skills" => ["required", "max:100"],
+            "soft_skills" => ["required", "max:100"]
         ]);
 
         info($infos["hard_skills"]);
