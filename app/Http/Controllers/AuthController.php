@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\RegisterMail;
+use App\Services\TimeService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
@@ -46,6 +48,8 @@ class AuthController extends Controller
 
     public function register(Request $request): RedirectResponse
     {
+        $time = App::make(TimeService::class);
+
         $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8', 'max:50'],
@@ -57,6 +61,11 @@ class AuthController extends Controller
 
         $errors = [];
 
+        $current = $time->currentTime(0);
+        $age = $current - strtotime($request->birth_date);
+        $year = 365*24*3600;
+
+        if($age < 16*$year || $age > 30*$year) $errors += ["birth" => "Seuls les jeunes de 16 à 30 ans peuvent s'inscrire."];
         if ($request->password != $request->confirm) $errors += ['password' => 'Les deux mots de passe ne correspondent pas.'];
         if (User::where("email", $request->email)->first()) $errors += ['email' => 'Cet email est déjà utilisé'];
 
