@@ -27,6 +27,7 @@ class SettingsController extends Controller
         ]);
         $user = $request->user();
         $errors = [];
+        if (User::where("email", $request->email)->first()) $errors += ['email' => 'Cet email est déjà utilisé'];
         if (!Hash::check($request->password, $user->password)) $errors += ['password' => 'Mot de passe incorect'];
         if (Hash::check($request->new_password, $user->password)) $errors += ['password' => 'Le nouveau mot de passe doit être différent de l\'ancien'];
         if ($request->new_password != $request->confirm) $errors += ['new_password' => 'Les deux mots de passe ne correspondent pas.'];
