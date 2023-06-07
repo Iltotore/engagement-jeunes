@@ -20,6 +20,7 @@ class ConsultFactory extends Factory
     {
         return [
             "user_id" => User::factory(),
+            "email" => fake()->email(),
             "token" => Str::random(10),
             "expire_at" => fake()->date()
         ];

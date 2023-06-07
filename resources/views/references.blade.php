@@ -81,8 +81,7 @@
             <div class="consult">
                 <input class="select" name="{{ $consult->id }}" type="checkbox">
                 <div class="consult_content">
-                    <!-- TODO Add email column to consults --> 
-                    <label>Envoyée à: ...</label>
+                    <label>Envoyée à: {{ $consult->email }}</label>
                     <label>References: </label>
                     <button onclick="toggleReferences(this)">+</button>
                     <div class="reference_container" hidden>
