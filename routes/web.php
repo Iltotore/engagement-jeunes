@@ -45,17 +45,17 @@ Route::get("/settings", function () {
     return view("settings");
 })->middleware("auth");
 
-Route::get("/references", function () {
+Route::get("/account", function () {
     return view("references");
 })->middleware("auth");
 
 
 // Fallback for GET requests to /references/summarize. These can happen when refreshing for example.
 Route::get("/references/summarize", function() {
-	return redirect("/references");
+	return redirect("/account");
 })->middleware("auth");
 
-// Summary Generation POST Route 
+// Summary Generation POST Route
 Route::post("/references/summarize", function() {
 	$summary_settings = $_POST;
 	if($summary_settings["summary_type"] == "PDF") {
