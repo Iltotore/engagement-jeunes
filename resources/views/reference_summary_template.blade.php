@@ -27,8 +27,9 @@
 	<body>
 		<h1>Liste des références pour <mark>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</mark>:</h1>
 		<ol id="reference_area">
+			<?php $summary_settings["selected"] = "-" . $summary_settings["selected"]; ?>
 			@foreach(Auth::user()->references as $reference)
-				@if(!isset($summary_settings[$reference->id]) || $summary_settings[$reference->id] != "on")
+				@if(!strpos($summary_settings["selected"],$reference->id))
 					@continue
 				@endif
 

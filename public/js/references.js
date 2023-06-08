@@ -58,3 +58,19 @@ function sendReferences() {
 
     form.submit()
 }
+
+function generateSummary() {
+	const fakeForm = document.getElementById("generation_menu")
+	const realForm = document.getElementById("generation_form")
+
+	const selected = realForm.querySelector('input[name="selected"]')
+	selected.value = getSelectedReferences().join(",")
+
+	if(fakeForm.querySelector('input[value="PDF"]').checked) {
+		realForm.querySelector('input[value="PDF"]').checked = true;
+	} else if (fakeForm.querySelector('input[value="HTML"]').checked) {
+		realForm.querySelector('input[value="HTML"]').checked = true;
+	}
+
+	realForm.submit()
+}
