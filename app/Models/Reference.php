@@ -49,7 +49,7 @@ class Reference extends Authenticatable
     public function hasExpired(): bool
     {
         $time = App::make(TimeService::class);
-        return !$this->isConfirmed() || $time->currentTime(0) >= strtotime($this->expire_at);
+        return !$this->isConfirmed() && $time->currentTime(0) >= strtotime($this->expire_at);
     }
 
     public function confirm(): void
