@@ -25,12 +25,13 @@
 		</style>
 	</head>
 	<body>
-		<!-- {{ Auth::user()->references; }}
-		</br> -->
-
 		<h1>Liste des références pour <mark>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</mark>:</h1>
 		<ol id="reference_area">
 			@foreach(Auth::user()->references as $reference)
+				@if(!isset($summary_settings[$reference->id]) || $summary_settings[$reference->id] != "on")
+					@continue
+				@endif
+
 				<li class="reference_list_member">
 					<h2>{{ $reference->area }} - {{ $reference->timeDuration() / (24*3600) }} jours</h2>
 					<div class="reference_content">
