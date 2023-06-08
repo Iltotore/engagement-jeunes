@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\RegisterMail;
+use App\Services\TimeService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
@@ -20,8 +22,8 @@ class AuthController extends Controller
     public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
+            "email" => ["required", "email"],
+            "password" => ["required"],
         ]);
 
         $redirect = $request->redirect ?? "/home";
@@ -32,33 +34,40 @@ class AuthController extends Controller
                 $request->session()->flush();
                 return redirect()
                     ->back()
-                    ->withErrors(['email' => 'Mail non confirmé']);
+                    ->withErrors(["email" => "Mail non confirmé"]);
             }
             $request->session()->start();
             return redirect()->to($redirect);
         } else {
             return redirect()
                 ->back()
-                ->withErrors(['credentials' => 'Addresse mail ou mot de passe incorrect'])
+                ->withErrors(["credentials" => "Addresse mail ou mot de passe incorrect"])
                 ->withInput($request->except("password", "confirm"));
         }
     }
 
     public function register(Request $request): RedirectResponse
     {
+        $time = App::make(TimeService::class);
+
         $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-            'confirm' => ['required'],
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'birth_date' => ['required', 'date'],
+            "email" => ["required", "email"],
+            "password" => ["required", "min:8", "max:50"],
+            "confirm" => ["required", "min:8", "max:50"],
+            "first_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} -]+$/u"],
+            "last_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} -]+$/u"],
+            "birth_date" => ["required", "date"],
         ]);
 
         $errors = [];
 
-        if ($request->password != $request->confirm) $errors += ['password' => 'Les deux mots de passe ne correspondent pas.'];
-        if (User::where("email", $request->email)->first()) $errors += ['email' => 'Cet email est déjà utilisé'];
+        $current = $time->currentTime(0);
+        $age = $current - strtotime($request->birth_date);
+        $year = 365*24*3600;
+
+        if($age < 16*$year || $age > 30*$year) $errors += ["birth" => "Seuls les jeunes de 16 à 30 ans peuvent s'inscrire.".$request->birth_date];
+        if ($request->password != $request->confirm) $errors += ["password" => "Les deux mots de passe ne correspondent pas."];
+        if (User::where("email", $request->email)->first()) $errors += ["email" => "Cet email est déjà utilisé"];
 
         if (sizeof($errors) > 0)
             return redirect()
@@ -94,7 +103,7 @@ class AuthController extends Controller
 
        //$request->session()->regenerateToken(); if problem uncomment
 
-        return redirect('/home');
+        return redirect("/home");
     }
 }
 
