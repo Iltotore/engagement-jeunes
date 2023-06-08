@@ -49,6 +49,25 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
+
+// Fallback for GET requests to /references/summarize. These can happen when refreshing for example.
+Route::get("/references/summarize", function() {
+	return redirect("/references");
+})->middleware("auth");
+
+// Summary Generation POST Route 
+Route::post("/references/summarize", function() {
+	$summary_settings = $_POST;
+	if($summary_settings["summary_type"] == "PDF") {
+		$pdf = App::make('dompdf.wrapper');
+		$pdf->loadHTML(view("reference_summary_template", ["summary_settings"=>$summary_settings]));
+		return $pdf->stream();
+	}
+	else {
+		return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
+	}
+})->middleware("auth");
+
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);

@@ -24,11 +24,19 @@
             @csrf
             <input name="selected" type="text">
         </form>
+
+		<form id="generation_form" action="/references/summarize" method="post">
+			@csrf
+			<input name="selected" type="text">
+			<input type="radio" name="summary_type" value="PDF" checked><label for="PDF">PDF</label>
+			<input type="radio" name="summary_type" value="HTML"><label for="HTML">HTML</label>
+    	</form>
     </div>
     <h1>Liste des références:</h1>
     <div class="reference_actions">
         <button onclick="toggleAddMenu()">Ajouter</button>
         <button onclick="removeSelectedReferences()">Supprimer</button>
+
         <button onclick="toggleConsultMenu()">Envoyer à un consultant</button>
         <div id="actions_menu">
             <form id="add_menu" action="api/references/add" method="post" hidden>
@@ -60,6 +68,15 @@
                 <button onclick="sendReferences()">Envoyer</button>
             </div>
         </div>
+
+		<button onclick="toggleMenu(document.getElementById('generation_menu'))">Générer une page de résumé</button>
+		<div id="generation_menu" hidden>
+			<fieldset>
+            	<input type="radio" name="summary_type" value="PDF" checked><label for="PDF">PDF</label></br>
+				<input type="radio" name="summary_type" value="HTML"><label for="HTML">HTML</label></br>
+				<button onclick="generateSummary()">Générer le résumé</button>
+			</fieldset>
+		</div>
     </div>
     <div class="reference_list">
         @foreach(Auth::user()->references as $ref)
