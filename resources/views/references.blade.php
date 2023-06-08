@@ -27,6 +27,7 @@
     </div>
     <div class="reference_actions">
         <button onclick="removeSelectedReferences()">Supprimer</button>
+
         <button onclick="toggleConsultMenu()">Envoyer à un consultant</button>
         <div id="consult_menu" hidden>
             <input name="email" type="email">
@@ -38,6 +39,27 @@
             </select>
             <button onclick="sendReferences()">Envoyer</button>
         </div>
+
+		<button onclick="toggleMenu(document.getElementById('generation_form'))">Générer une page de résumé</button>
+		<form id="generation_form" action="/references/summarize" method="post" hidden>
+			@csrf
+
+			<fieldset>
+				@foreach(Auth::user()->references as $ref)
+					<div class="reference">
+						<input class="select" name="{{ $ref->id }}" type="checkbox" checked>
+						<div class="reference_content">
+							<label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}: {{ $ref->area }}</label><br>
+							<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+						</div>
+					</div>
+				@endforeach
+
+				<input type="radio" name="summary_type" value="PDF" checked><label for="PDF">PDF</label></br>
+				<input type="radio" name="summary_type" value="HTML"><label for="HTML">HTML</label></br>
+				<input type="submit" value="Générer le résumé">
+			</fieldset>
+    	</form>
     </div>
     <h1>Liste des références:</h1>
     <div class="reference_list">

@@ -49,14 +49,10 @@ Route::get("/references", function () {
     return view("references");
 })->middleware("auth");
 
-// Summary Generation Settings Page.
-Route::get("/references/summary_generator", function () {
-    return view("reference_summary_generator");
-})->middleware("auth");
 
 // Fallback for GET requests to /references/summarize. These can happen when refreshing for example.
 Route::get("/references/summarize", function() {
-	return view("reference_summary_generator");
+	return redirect("/references");
 })->middleware("auth");
 
 // Summary Generation POST Route 
