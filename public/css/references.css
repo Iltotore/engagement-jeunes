@@ -19,14 +19,17 @@ div.reference_actions {
 	gap: 1.5vw;
 }
 
-div.reference_actions > button,  div.consult_actions > button{
-	border: none;
-	text-align: center;
-	color: white;
-	text-decoration: none;
+div.reference_actions > button,  div.consult_actions > button {
+    background-color: rgb(218, 8, 89);
+    border: none;
+    text-align: center;
+    color: white;
+    text-decoration: none;
 
-	font-weight: bold;
-	margin: 0.5em 0.5em;
+    font-size: max(0.9vw,0.8em);
+    font-weight: bold;
+    margin: 0.5em 0.5em;
+    cursor: pointer;
 }
 
 div.reference_actions > button {
