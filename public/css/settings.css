@@ -15,6 +15,7 @@ label > input:not([type = "checkbox"]) {
 	margin-top: 0.2vw;
 	margin-bottom: 0.2vw;
 	width: auto;
+	min-width: fit-content;
 	max-width: 13vw;
 }
 
