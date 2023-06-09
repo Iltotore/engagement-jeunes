@@ -60,16 +60,18 @@ class ValidationTest extends TestCase {
         $this->register(firstName: "Simon")->assertSessionDoesntHaveErrors();
         $this->register(firstName: "Raphaël")->assertSessionDoesntHaveErrors();
         $this->register(firstName: "Jean-Paul")->assertSessionDoesntHaveErrors();
+        $this->register(firstName: "Le'o")->assertSessionDoesntHaveErrors();
         $this->register(firstName: "Raphaël Marc Jean Paul")->assertSessionDoesntHaveErrors();
     }
 
     public function test_register_last_name(): void {
-        $this->register(lastName: "Simon01")->assertSessionHasErrors();
-        $this->register(lastName: "Simon_Marc")->assertSessionHasErrors();
-        $this->register(lastName: "Simon")->assertSessionDoesntHaveErrors();
-        $this->register(lastName: "Raphaël")->assertSessionDoesntHaveErrors();
-        $this->register(lastName: "Jean-Paul")->assertSessionDoesntHaveErrors();
-        $this->register(lastName: "Raphaël Marc Jean Paul")->assertSessionDoesntHaveErrors();
+        $this->register(lastName: "Dupont01")->assertSessionHasErrors();
+        $this->register(lastName: "Dupont_Aignan")->assertSessionHasErrors();
+        $this->register(lastName: "Dupont")->assertSessionDoesntHaveErrors();
+        $this->register(lastName: "Pécresse")->assertSessionDoesntHaveErrors();
+        $this->register(lastName: "Dupont-Aignan")->assertSessionDoesntHaveErrors();
+        $this->register(lastName: "O'reilly")->assertSessionDoesntHaveErrors();
+        $this->register(lastName: "Mc Callum")->assertSessionDoesntHaveErrors();
     }
 
     public function test_register_birth_date(): void {
