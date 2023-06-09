@@ -1,0 +1,54 @@
+div#account_management_divs {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5vw;
+	margin-top: 2vh;
+}
+
+div.account_settings_area {
+	border: 1px solid grey;
+	padding: 0 1.5em 1.5em 1.5em;
+	min-width: fit-content;
+	width: 38vw;
+}
+
+/* Reference zone */
+div.reference_actions {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 1.5vw;
+}
+
+div.reference_actions > button,  div.consult_actions > button{
+	border: none;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+
+	font-weight: bold;
+	margin: 0.5em 0.5em;
+}
+
+div.reference_actions > button {
+	background-color: rgb(218, 8, 89);
+}
+div.reference_actions > button:hover {
+	cursor: pointer;
+	background-color: rgb(238, 107, 250);
+}
+
+/* Consult zone */
+div.consult_actions > button {
+	background-color: rgb(16, 134, 5);
+}
+div.consult_actions > button:hover {
+	cursor: pointer;
+	background-color: rgb(119, 250, 107);
+}
+
+/* When on phone */
+@media (max-width: 768px) {
+	div#account_management_divs {
+	  grid-template-columns: 1fr;
+	}
+}
