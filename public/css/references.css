@@ -1,0 +1,99 @@
+div#account_management_divs {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5vw;
+	margin-top: 2vh;
+}
+
+div.account_settings_area {
+	border: 1px solid grey;
+	padding: 0 1.5em 1.5em 1.5em;
+	min-width: fit-content;
+	width: 38vw;
+
+	border-radius: 1em;
+}
+
+div#reference_zone {
+	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.1),rgba(255, 255, 255, 0));
+}
+
+div#consultation_zone {
+	background: radial-gradient(circle at top right, rgba(16, 134, 5, 0.1),rgba(255, 255, 255, 0));
+}
+
+
+/* Reference zone */
+div.reference_actions {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	gap: 1.5vw;
+}
+
+div.reference_actions > button,  div.consult_actions > button {
+    background-color: rgb(218, 8, 89);
+    border: none;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+    font-size: max(0.7vw,0.8em);
+    font-weight: bold;
+    cursor: pointer;
+	padding: 0.4em 0.4em;
+
+	border-radius: 0.5em;
+}
+
+div.reference_actions > button {
+	background-color: rgb(218, 8, 89);
+}
+div.reference_actions > button:hover {
+	cursor: pointer;
+	background-color: rgb(238, 107, 250);
+}
+
+/* Lists */
+div.reference_list, div.consult_list {
+	display: inline-grid;
+	grid-template-columns: 1fr;
+	gap: 1.5vw;
+	margin-top: 2vh;
+	width: 60%;
+
+	justify-content: center;
+}
+div.reference_list > div.reference, div.consult_list > div.consult {
+	display: flex;
+	border: 1px solid grey;
+	gap: 1vw;
+	padding: 0.5vw;
+	border-radius: 0.2em;
+	text-align: left;
+	width: 90%;
+	min-width: fit-content;
+}
+div#reference_zone h1, div#consultation_zone h1 {
+	letter-spacing: 0;
+	font-weight: lighter;
+}
+div.reference_list > div.reference > input[type="checkbox"], div.consult_list > div.consult > input[type="checkbox"] {
+	width: 1vw;
+	min-width: 1.3em;
+}
+
+/* Consult zone */
+div.consult_actions > button {
+	background-color: rgb(16, 134, 5);
+}
+div.consult_actions > button:hover {
+	cursor: pointer;
+	background-color: rgb(119, 250, 107);
+}
+
+/* When on phone */
+@media (max-width: 768px) {
+	div#account_management_divs {
+	  grid-template-columns: 1fr;
+	}
+}
