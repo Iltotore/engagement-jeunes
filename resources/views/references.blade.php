@@ -11,7 +11,7 @@
 		@include('app_common', ['message' => "Mes références"])
 		<div id="account_management_divs">
 			<div id="reference_zone" class="account_settings_area">
-				<div class="100%width">
+				<div>
 					<div hidden>
 						<form id="add_form" action="api/references/add" method="post" hidden>
 							@csrf
@@ -112,6 +112,7 @@
 
 							<div id="generation_menu" hidden>
 								<fieldset>
+									<legend>Générer une page de résumé</legend>
 									<input type="radio" name="summary_type" value="PDF" checked>
 									<label for="PDF">PDF</label>
 									</br>
@@ -125,14 +126,15 @@
 				</div>
 				<div class="reference_list">
 					@foreach(Auth::user()->references as $ref)
-					<div class="reference">
-						<input class="select" name="{{ $ref->id }}" type="checkbox">
-						<div class="reference_content">
-							<label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }} : {{ $ref->area }}</label>
-							<br>
-							<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+						<div class="reference">
+							<input class="select" name="{{ $ref->id }}" type="checkbox">
+							<div class="reference_content">
+								<label class="summary">Référent : {{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}</label></br>
+								<label>Lieu : {{ $ref->area }}</label></br>
+								</br>
+								<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+							</div>
 						</div>
-					</div>
 					@endforeach
 				</div>
 			</div>
@@ -144,23 +146,24 @@
 				</div>
 				<div class="consult_list">
 					@foreach(Auth::user()->consults as $consult)
-					<div class="consult">
-						<input class="select" name="{{ $consult->id }}" type="checkbox">
-						<div class="consult_content">
-							<label>Envoyée à: {{ $consult->email }}</label>
-							<label>References: </label>
-							<button onclick="toggleReferences(this)">+</button>
-							<div class="reference_container" hidden>
-								@foreach($consult->references as $ref)
-								<div class="reference_content">
-									<label class="summary">{{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }} : {{ $ref->area }}</label>
-									<br>
-									<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
-								</div>
-								@endforeach
+						<div class="consult">
+							<input class="select" name="{{ $consult->id }}" type="checkbox">
+							<div class="consult_content">
+								<label>Envoyée à : {{ $consult->email }}</label></br>
+								<label>Références : </label>
+								<button onclick="toggleReferences(this)">+</button>
+								<ul class="reference_container" hidden>
+									@foreach($consult->references as $ref)
+										<li class="reference_content">
+											<label class="summary">Référent : {{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}</label></br>
+											<label>Lieu : {{ $ref->area }}</label></br>
+											</br>
+											<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
+										</li>
+									@endforeach
+								</ul>
 							</div>
 						</div>
-					</div>
 					@endforeach
 				</div>
 			</div>
