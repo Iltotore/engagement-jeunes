@@ -89,19 +89,28 @@ class ReferenceController extends Controller {
 
         $infos = $request->validate([
             "hard_skills" => ["required", "max:100"],
-            "soft_skills" => ["required", "max:100"]
+            "soft_skills" => ["required", "max:100"],
+            "ref_first_name" => ["required", "max:100"],
+            "ref_last_name" => ["required", "max:100"],
+            "ref_birth_date" => ["required", "date"]
         ]);
 
         info($infos["hard_skills"]);
         info($infos["soft_skills"]);
 
         $reference = Reference::where("token", $token)->first();
+        info($reference);
         if ($reference) {
+            info("hi");
             $reference->hard_skill_values = $infos["hard_skills"];
             $reference->soft_skill_values = $infos["soft_skills"];
+            $reference->ref_first_name = $infos["ref_first_name"];
+            $reference->ref_last_name = $infos["ref_last_name"];
+            $reference->ref_birth_date = $infos["ref_birth_date"];
+
             $reference->save();
             return redirect()
-                ->intended("/account/display?token=" . $token)
+                ->intended("/references/display?token=" . $token)
                 ->with([
                     "notifications" => [
                         "ok" => ["Référence modifiée"]
@@ -167,7 +176,6 @@ class ReferenceController extends Controller {
 
         $consult = Consult::create([
             "user_id" => $user->id,
-            "email" => $infos["email"],
             "token" => uniqid(),
             "expire_at" => $time->currentTime($infos["duration"]*24*3600)
         ]);
