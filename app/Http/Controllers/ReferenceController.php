@@ -176,6 +176,7 @@ class ReferenceController extends Controller {
 
         $consult = Consult::create([
             "user_id" => $user->id,
+            "email" => $infos["email"],
             "token" => uniqid(),
             "expire_at" => $time->currentTime($infos["duration"]*24*3600)
         ]);
