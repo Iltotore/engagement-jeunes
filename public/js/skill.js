@@ -22,9 +22,16 @@ function sendEdit() {
     const form = document.getElementById("edit_form")
     const hardSkillsInput = form.querySelector("input[name='hard_skills']")
     const softSkillsInput = form.querySelector("input[name='soft_skills']")
+    const firstNameInput = form.querySelector("input[name='ref_first_name']")
+    const lastNameInput = form.querySelector("input[name='ref_last_name']")
+    const birthDateInput = form.querySelector("input[name='ref_birth_date']")
 
     hardSkillsInput.value = getSkills("hard").join(",")
     softSkillsInput.value = getSkills("soft").join(",")
+
+    firstNameInput.value = document.querySelector("label > input[name='ref_first_name']").value
+    lastNameInput.value = document.querySelector("label > input[name='ref_last_name']").value
+    birthDateInput.value = document.querySelector("label > input[name='ref_birth_date']").value
 
     form.submit()
 }
