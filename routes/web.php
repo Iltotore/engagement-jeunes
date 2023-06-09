@@ -68,6 +68,10 @@ Route::post("/references/summarize", function() {
 	}
 })->middleware("auth");
 
+Route::get('/reference/confirm', function () {
+    return view('reference_confirm');
+});
+
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
