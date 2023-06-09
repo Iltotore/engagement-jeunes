@@ -1,0 +1,56 @@
+div#settings_area{
+	display: inline-grid;
+	grid-template-columns: 1fr;
+	gap: 0;
+	margin-top: 1vh;
+}
+
+form#settings_area {
+	width: 90vw;
+	padding-top: 2vh;
+	min-width: fit-content;
+}
+
+label > input:not([type = "checkbox"]) {
+	margin-top: 0.2vw;
+	margin-bottom: 0.2vw;
+	width: auto;
+	min-width: fit-content;
+	max-width: 13vw;
+}
+
+input[type="submit"]{
+	background-color: rgb(218, 8, 89);
+	border: none;
+	text-align: center;
+	color: white;
+	padding: 1vh 2vw;
+	text-decoration: none;
+
+	font-size: max(0.9vw,0.8em);
+	font-weight: bold;
+	margin: 0.5em 0.5em;
+	cursor: pointer;
+
+	margin-top: 2.5vw;
+}
+
+fieldset {
+	border: none;
+}
+
+form {
+	border: 1px solid grey;
+	padding: 0.5vw;
+}
+
+legend {
+	font-size: max(2vw,1.5em);
+	font-weight: bold;
+	color: rgb(218, 8, 89);
+	margin-bottom: 2.5vh;
+}
+
+label {
+	color: rgb(104, 104, 104);
+}
