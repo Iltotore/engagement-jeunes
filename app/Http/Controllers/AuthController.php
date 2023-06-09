@@ -54,8 +54,8 @@ class AuthController extends Controller
             "email" => ["required", "email"],
             "password" => ["required", "min:8", "max:50"],
             "confirm" => ["required", "min:8", "max:50"],
-            "first_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} -]+$/u"],
-            "last_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} -]+$/u"],
+            "first_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} '-]+$/u"],
+            "last_name" => ["required", "max:50", "regex:/^[a-zA-Z\u{00C0}-\u{00D6}\u{00D8}-\u{00F6}\u{00F8}-\u{024F} '-]+$/u"],
             "birth_date" => ["required", "date"],
         ]);
 
