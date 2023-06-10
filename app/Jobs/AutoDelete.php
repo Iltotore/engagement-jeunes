@@ -31,19 +31,16 @@ class AutoDelete implements ShouldQueue
     {
         foreach (User::all() as $user) {
             if ($user->hasExpired()) {
-                $user->booted();
                 $user->delete();
             }
         }
         foreach (Reference::all() as $ref){
             if($ref->hasExpired()){
-                $ref->booted();
                 $ref->delete();
             }
         }
         foreach (Consult::all() as $consult){
             if($consult->hasEpired()){
-                $consult->booted();
                 $consult->delete();
             }
         }

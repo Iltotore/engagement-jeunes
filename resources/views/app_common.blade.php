@@ -24,6 +24,9 @@
         </div>
     </div>
     <div id="tab_bar">
+        @if(Auth::check() && Auth::user()->admin)
+            <a id="admin_button" href="/admin">ADMINISTRATION</a>
+        @endif
         <a id="account_button" href="/account">MON COMPTE</a>
         <a id="settings_button" href="/settings">PARAMÈTRES</a>
         <a id="partners_button" href="/partners">PARTENAIRES</a>
