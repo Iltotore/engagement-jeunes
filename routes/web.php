@@ -5,6 +5,7 @@ use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
+use Illuminate\Support\Facades\App;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,7 +55,7 @@ Route::get("/references/summarize", function() {
 })->middleware("auth");
 
 // Summary Generation POST Route
-Route::post("/references/summarize", function() {
+Route::any("/references/summarize", function() {
 	$summary_settings = $_POST;
 	if($summary_settings["summary_type"] == "PDF") {
 		$pdf = App::make('dompdf.wrapper');
@@ -64,18 +65,18 @@ Route::post("/references/summarize", function() {
 	else {
 		return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
 	}
-})->middleware("auth.account");
+})->middleware(["post", "auth.account"]);
 
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
-Route::post("/api/login", [AuthController::class, "login"]);
-Route::post("/api/register", [AuthController::class, "register"]);
-Route::post("/api/references/add", [ReferenceController::class, "add"])->middleware("auth.account");
-Route::post("/api/references/edit", [ReferenceController::class, "edit"]);
-Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
-Route::post("/api/settings", [SettingsController::class, "update"])->middleware("auth.account");
-Route::post("/api/references/remove", [ReferenceController::class, "remove"])->middleware("auth.account");
-Route::post("/api/references/send", [ReferenceController::class, "sendConsult"])->middleware("auth.account");
-Route::post("/api/consults/remove", [ReferenceController::class, "removeConsult"])->middleware("auth.account");
+Route::any("/api/login", [AuthController::class, "login"])->middleware("post");
+Route::any("/api/register", [AuthController::class, "register"])->middleware("post");;
+Route::any("/api/references/add", [ReferenceController::class, "add"])->middleware(["post", "auth.account"]);
+Route::any("/api/references/edit", [ReferenceController::class, "edit"])->middleware("post");;
+Route::any("/api/references/confirm", [ReferenceController::class, "confirm"])->middleware("post");;
+Route::any("/api/settings", [SettingsController::class, "update"])->middleware(["post", "auth.account"]);
+Route::any("/api/references/remove", [ReferenceController::class, "remove"])->middleware(["post", "auth.account"]);
+Route::any("/api/references/send", [ReferenceController::class, "sendConsult"])->middleware(["post", "auth.account"]);
+Route::any("/api/consults/remove", [ReferenceController::class, "removeConsult"])->middleware(["post", "auth.account"]);
