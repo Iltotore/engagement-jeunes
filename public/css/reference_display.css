@@ -1,0 +1,37 @@
+div#consult_zone {
+	width: 100vw;
+}
+
+fieldset{
+	border: 1px solid grey;
+	border-radius: 1em;
+	margin: max(1vw,1em) auto;
+	padding: max(1vw,1em);
+	width: 90%;
+}
+
+fieldset#info_zone {
+	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.1),rgba(255, 255, 255, 0));
+	border: 2px solid rgb(218, 8, 89);
+}
+
+fieldset#modif_zone {
+	background: radial-gradient(circle at top right, rgba(16, 134, 5, 0.1),rgba(255, 255, 255, 0));
+	border: 2px solid rgba(16, 134, 5, 0.9);
+}
+
+/* Legend */
+legend {
+	font-size: 1.2em;
+	font-weight: lighter;
+}
+
+/* Static text */
+label.static_text {
+	font-weight: bold;
+}
+
+/* Force li dots to be right next to text */
+li {
+	list-style-position: inside;
+}
