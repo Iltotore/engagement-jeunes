@@ -97,7 +97,7 @@ HTML côté serveur via des directives et du code en PHP.
 
 Voici à titre d'exemple la partie front-end du système de notification d'erreurs :
 
-```php
+```blade
 @foreach($errors->all() as $error)
     <div class="notif error">
         <img src="{{ asset('img/white-cross.png') }}" alt="Croix blanche" onclick="closeWidget(this.parentNode)"/>
