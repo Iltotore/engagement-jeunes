@@ -146,7 +146,7 @@ class ReferenceController extends Controller {
      * Remove selected references.
      */
     public function remove(Request $request): RedirectResponse {
-        $user = $request->current;
+        $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
         foreach ($ids as $id) {
             $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
