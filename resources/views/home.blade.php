@@ -10,8 +10,8 @@
 				<div>
 					<h1>De quoi s'agit-il ?</h1>
 					<p>
-					D'une opportunité : celle qu'un engagement quel qu'il soit puissue être considéré à sa juste valeur.</br>
-					Toute expérience est source d'enrichissement et doit être reconnu largement.</br>
+					D'une opportunité : celle qu'un engagement quel qu'il soit puisse être considéré à sa juste valeur.</br>
+					Toute expérience est source d'enrichissement et doit être reconnue largement.</br>
 					Elle révèle un potentiel, l'expression d'un savoir-être à concrétiser.
 					</p>
 				</div>
@@ -20,8 +20,8 @@
 					<h1>À qui s'adresse-t'il ?</h1>
 					<p>
 					À vous, jeunes entre 16 et 30 ans, qui vous êtes investis spontanément dans une association ou dans tout type d'action formelle ou informelle, et qui avez partagé de votre temps, de votre énergie, pour apporter un soutien, une aide, une compétence.</br></br>
-					À vous, responsables de structures ou référents d'un jour, qui avez croisé la route de ces jeune et avez bénéficié même ponctuellement de cette implication citoyenne !</br>
-					C'est l'occasion de vous engager à votre tour pour ces jeunes en confirmant leur richesse pour en avoir été un temps les témoins mais aussi les bénéficiaires !
+					À vous, responsables de structures ou référents d'un jour, qui avez croisé la route de ces jeunes et avez bénéficié, même ponctuellement, de cette implication citoyenne !</br>
+					C'est l'occasion de vous engager à votre tour pour ces jeunes en confirmant leur richesse pour en avoir été un temps les témoins, mais aussi les bénéficiaires !
 					</p>
 				</div>
 

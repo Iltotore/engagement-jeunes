@@ -109,5 +109,5 @@ Voici à titre d'exemple la partie front-end du système de notification d'erreu
 ### Back-end
 
 Le back-end du projet est fait en PHP avec Laravel. Il suit la même architecture que leur projet minimal sur Github.
-Grâce à l'abstraction technique proposée par Laravel, nous avons pû nous concentrer sur la logique métier du site et
+Grâce à l'abstraction technique proposée par Laravel, nous avons pu nous concentrer sur la logique métier du site et
 avancer efficacement.
