@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\App;
 |
 */
 
+//Pages
 Route::get('/', function () {
     return view('welcome');
 });
@@ -50,28 +51,24 @@ Route::get("/account", function () {
     return view("references");
 })->middleware("auth");
 
-// Fallback for GET requests to /references/summarize. These can happen when refreshing for example.
-Route::get("/references/summarize", function() {
-	return redirect("/account");
-})->middleware("auth");
-
-// Summary Generation POST Route
-Route::any("/references/summarize", function() {
-	$summary_settings = $_POST;
-	if($summary_settings["summary_type"] == "PDF") {
-		$pdf = App::make('dompdf.wrapper');
-		$pdf->loadHTML(view("reference_summary_template", ["summary_settings"=>$summary_settings]));
-		return $pdf->stream();
-	}
-	else {
-		return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
-	}
-})->middleware(["post", "auth.account"]);
-
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
+// Summary generation
+Route::any("/references/summarize", function() {
+    $summary_settings = $_POST;
+    if($summary_settings["summary_type"] == "PDF") {
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadHTML(view("reference_summary_template", ["summary_settings"=>$summary_settings]));
+        return $pdf->stream();
+    }
+    else {
+        return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
+    }
+})->middleware(["post", "auth.account"]);
+
+//Private API Routes.
 Route::any("/api/login", [AuthController::class, "login"])->middleware("post");
 Route::any("/api/register", [AuthController::class, "register"])->middleware("post");;
 Route::any("/api/references/add", [ReferenceController::class, "add"])->middleware(["post", "auth.account"]);

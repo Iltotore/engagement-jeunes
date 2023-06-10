@@ -20,7 +20,7 @@ class ValidationTest extends TestCase {
             "confirm" => $confirm == null ? $password : $confirm,
             "first_name" => $firstName == null ? fake()->firstName() : $firstName,
             "last_name" => $lastName == null ? fake()->lastName() : $lastName,
-            "birth_date" => $birthDate == null ? fake()->dateTimeBetween("1970-01-01 - 30 years", "1970-01-01 - 16 years")->format("Y-m-d") : $birthDate
+            "birth_date" => $birthDate == null ? fake()->dateTimeBetween("1970-01-01 - 30 years - 1 day", "1970-01-01 - 16 years - 1 day")->format("Y-m-d") : $birthDate
         ]);
     }
 

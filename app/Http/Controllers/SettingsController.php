@@ -17,8 +17,15 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
+/**
+ * Controller for the /settings page.
+ */
 class SettingsController extends Controller
 {
+
+    /**
+     * Update settings
+     */
     public function update(Request $request): RedirectResponse
     {
         $time = App::make(TimeService::class);
@@ -64,7 +71,7 @@ class SettingsController extends Controller
             $user->last_name = $request->last_name;
             $user->birth_date = $request->birth_date;
             $user->save();
-            Log::info("validated bitch");
+
             return redirect()
                 ->intended("/settings")
                 ->with([

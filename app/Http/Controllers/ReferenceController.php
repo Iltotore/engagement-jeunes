@@ -16,8 +16,14 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
+/**
+ * Controller for reference-related requests.
+ */
 class ReferenceController extends Controller {
 
+    /**
+     * Handle a reference addition request.
+     */
     public function add(Request $request): RedirectResponse {
         $infos = $request->validate([
             "description" => ["required", "max:100"],
@@ -53,8 +59,6 @@ class ReferenceController extends Controller {
             $infos["birth_date"]
         );
 
-        info($infos["email"]);
-
         Mail::to($infos["email"])->send(new ReferenceMail($reference));
 
         return redirect()
@@ -66,6 +70,9 @@ class ReferenceController extends Controller {
             ]);
     }
 
+    /**
+     * Display the requested reference.
+     */
     public function display(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
@@ -75,6 +82,9 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    /**
+     * Display the requested consult.
+     */
     public function showConsult(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
@@ -84,6 +94,9 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    /**
+     * Edit the displayed request.
+     */
     public function edit(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
@@ -95,13 +108,9 @@ class ReferenceController extends Controller {
             "ref_birth_date" => ["required", "date"]
         ]);
 
-        info($infos["hard_skills"]);
-        info($infos["soft_skills"]);
-
         $reference = Reference::where("token", $token)->first();
-        info($reference);
+
         if ($reference) {
-            info("hi");
             $reference->hard_skill_values = $infos["hard_skills"];
             $reference->soft_skill_values = $infos["soft_skills"];
             $reference->ref_first_name = $infos["ref_first_name"];
@@ -120,6 +129,9 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    /**
+     * Confirm a reference.
+     */
     public function confirm(Request $request): RedirectResponse|View|Factory {
         $token = $request->token;
 
@@ -130,8 +142,11 @@ class ReferenceController extends Controller {
         } else abort(404);
     }
 
+    /**
+     * Remove selected references.
+     */
     public function remove(Request $request): RedirectResponse {
-        $user = $request->current;
+        $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
         foreach ($ids as $id) {
             $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
@@ -151,6 +166,9 @@ class ReferenceController extends Controller {
             ]);
     }
 
+    /**
+     * Send a consult containing the given references to a consultant.
+     */
     public function sendConsult(Request $request): RedirectResponse {
         $user = Auth::user();
 
@@ -194,10 +212,12 @@ class ReferenceController extends Controller {
             ]);
     }
 
+    /**
+     * Remove selected consults.
+     */
     public function removeConsult(Request $request): RedirectResponse {
         $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
-        info($ids);
         foreach ($ids as $id) {
             $consult = Consult::where("id", $id)->where("user_id", $user->id)->first();
             if ($consult) {

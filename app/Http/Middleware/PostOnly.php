@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 class PostOnly
 {
     /**
-     * Handle an incoming request.
+     * Redirects to /home if request method is not POST.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
