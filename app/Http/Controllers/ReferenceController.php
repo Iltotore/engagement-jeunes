@@ -59,8 +59,6 @@ class ReferenceController extends Controller {
             $infos["birth_date"]
         );
 
-        info($infos["email"]);
-
         Mail::to($infos["email"])->send(new ReferenceMail($reference));
 
         return redirect()
@@ -110,13 +108,9 @@ class ReferenceController extends Controller {
             "ref_birth_date" => ["required", "date"]
         ]);
 
-        info($infos["hard_skills"]);
-        info($infos["soft_skills"]);
-
         $reference = Reference::where("token", $token)->first();
-        info($reference);
+
         if ($reference) {
-            info("hi");
             $reference->hard_skill_values = $infos["hard_skills"];
             $reference->soft_skill_values = $infos["soft_skills"];
             $reference->ref_first_name = $infos["ref_first_name"];
@@ -224,7 +218,6 @@ class ReferenceController extends Controller {
     public function removeConsult(Request $request): RedirectResponse {
         $user = Auth::user();
         $ids = explode(",", $request->selected ?? "");
-        info($ids);
         foreach ($ids as $id) {
             $consult = Consult::where("id", $id)->where("user_id", $user->id)->first();
             if ($consult) {

@@ -71,7 +71,7 @@ class SettingsController extends Controller
             $user->last_name = $request->last_name;
             $user->birth_date = $request->birth_date;
             $user->save();
-            Log::info("validated bitch");
+
             return redirect()
                 ->intended("/settings")
                 ->with([
