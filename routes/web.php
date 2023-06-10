@@ -21,8 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//C'est un GET mais c'est que pour le test
-
 Route::get("/home", function () {
     return view("home");
 });
@@ -66,7 +64,7 @@ Route::post("/references/summarize", function() {
 	else {
 		return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
 	}
-})->middleware("auth");
+})->middleware("auth.account");
 
 Route::get("/logout", [AuthController::class, "logout"]);
 Route::get("/references/display", [ReferenceController::class, "display"]);
@@ -74,10 +72,10 @@ Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
 Route::post("/api/login", [AuthController::class, "login"]);
 Route::post("/api/register", [AuthController::class, "register"]);
-Route::post("/api/references/add", [ReferenceController::class, "add"]);
+Route::post("/api/references/add", [ReferenceController::class, "add"])->middleware("auth.account");
 Route::post("/api/references/edit", [ReferenceController::class, "edit"]);
 Route::post("/api/references/confirm", [ReferenceController::class, "confirm"]);
-Route::post("/api/settings", [SettingsController::class, "update"]);
-Route::post("/api/references/remove", [ReferenceController::class, "remove"]);
-Route::post("/api/references/send", [ReferenceController::class, "sendConsult"]);
-Route::post("/api/consults/remove", [ReferenceController::class, "removeConsult"]);
+Route::post("/api/settings", [SettingsController::class, "update"])->middleware("auth.account");
+Route::post("/api/references/remove", [ReferenceController::class, "remove"])->middleware("auth.account");
+Route::post("/api/references/send", [ReferenceController::class, "sendConsult"])->middleware("auth.account");
+Route::post("/api/consults/remove", [ReferenceController::class, "removeConsult"])->middleware("auth.account");
