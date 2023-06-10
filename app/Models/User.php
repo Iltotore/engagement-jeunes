@@ -68,7 +68,7 @@ class User extends Authenticatable {
         $this->save();
     }
 
-    public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate): User
+    public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate, bool $admin = false): User
     {
         $time = App::make(TimeService::class);
 
@@ -79,7 +79,8 @@ class User extends Authenticatable {
             "last_name" => $lastName,
             "birth_date" => $birthDate,
             "expire_at" => date(DateTimeInterface::ATOM, $time->currentTime(3600 * 24)),
-            "registration_token" => uniqid()
+            "registration_token" => uniqid(),
+            "admin" => $admin
         ]);
     }
 }

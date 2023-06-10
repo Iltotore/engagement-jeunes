@@ -25,6 +25,7 @@ class UserFactory extends Factory
             "birth_date" => fake()->date(),
             "expire_at" => fake()->date(),
             "registration_token" => Str::random(10),
+            "admin" => 0,
             "created_at" => fake()->date(),
             "updated_at" => fake()->date(),
             "remember_token" => Str::random(10)

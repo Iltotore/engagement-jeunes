@@ -4,6 +4,7 @@ body {
 	--dark-color: #cbcbcb;
 	--less-dark-color: #cfcfcf;
 
+    --admin-color: rgb(1, 89, 254);
 	--jeune-color: rgb(218, 8, 89);
 	--referent-color: green;
 	--consultant-color: rgb(0, 153, 255);
@@ -128,6 +129,10 @@ div#tab_bar a {
 	text-decoration: none;
 	font-weight: lighter;
 	font-size: max(1.3vw,1em);
+}
+
+a#admin_button {
+    color: var(--admin-color)
 }
 
 a#account_button {

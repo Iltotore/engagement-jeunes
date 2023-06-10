@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ReferenceController;
 use App\Http\Controllers\SettingsController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\App;
@@ -48,7 +50,6 @@ Route::get("/account", function () {
     return view("references");
 })->middleware("auth");
 
-
 // Fallback for GET requests to /references/summarize. These can happen when refreshing for example.
 Route::get("/references/summarize", function() {
 	return redirect("/account");
@@ -80,3 +81,9 @@ Route::any("/api/settings", [SettingsController::class, "update"])->middleware([
 Route::any("/api/references/remove", [ReferenceController::class, "remove"])->middleware(["post", "auth.account"]);
 Route::any("/api/references/send", [ReferenceController::class, "sendConsult"])->middleware(["post", "auth.account"]);
 Route::any("/api/consults/remove", [ReferenceController::class, "removeConsult"])->middleware(["post", "auth.account"]);
+
+//Admin routes
+Route::get("/admin", [AdminController::class, "getPanel"])->middleware("admin");
+
+Route::post("/api/admin/users/remove", [AdminController::class, "removeUsers"])->middleware("admin");
+Route::post("/api/admin/references/remove", [AdminController::class, "removeReferences"])->middleware("admin");

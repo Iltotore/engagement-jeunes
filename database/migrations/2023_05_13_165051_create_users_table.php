@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('birth_date');
             $table->date('expire_at')->nullable();
             $table->text('registration_token')->nullable();
+            $table->boolean('admin');
             $table->date('created_at');
             $table->date('updated_at');
             $table->text('remember_token')->nullable();

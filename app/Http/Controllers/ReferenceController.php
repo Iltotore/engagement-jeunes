@@ -131,7 +131,7 @@ class ReferenceController extends Controller {
     }
 
     public function remove(Request $request): RedirectResponse {
-        $user = Auth::user();
+        $user = $request->current;
         $ids = explode(",", $request->selected ?? "");
         foreach ($ids as $id) {
             $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
