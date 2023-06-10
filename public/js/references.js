@@ -1,3 +1,9 @@
+/**
+ * Get added skills of a given type.
+ *
+ * @param type the type of skills to get
+ * @returns {string[]} the list of skill names
+ */
 function getSkills(type) {
     const skillList = document.getElementById(`${type}_skills`)
 
@@ -5,6 +11,11 @@ function getSkills(type) {
         .map(li => li.id.substring(4))
 }
 
+/**
+ * Add a new skill.
+ *
+ * @param type the type of the new skill
+ */
 function addSkill(type) {
     const newSkill = document.querySelector(`div > input[name='${type}_skill']`)
     const skillList = document.getElementById(`${type}_skills`)
@@ -18,18 +29,31 @@ function addSkill(type) {
     if(skillName.length !== 0 && !getSkills(type).includes(skillName)) skillList.appendChild(newEntry)
 }
 
+/**
+ * Get selected references.
+ *
+ * @returns {string[]} the reference ids
+ */
 function getSelectedReferences() {
     return [...document.querySelectorAll(".reference > .select")]
         .filter(box => box.checked)
         .map(box => box.name)
 }
 
+/**
+ * Get selected consults.
+ *
+ * @returns {string[]} the consult ids
+ */
 function getSelectedConsults() {
     return [...document.querySelectorAll(".consult > .select")]
         .filter(box => box.checked)
         .map(box => box.name)
 }
 
+/**
+ * Add a new reference.
+ */
 function addReference() {
     const description = document.querySelector("#add_menu > label > textarea[name='description']").value
     const area = document.querySelector("#add_menu > label > input[name='area']").value
@@ -55,6 +79,9 @@ function addReference() {
     form.submit()
 }
 
+/**
+ * Remove selected references.
+ */
 function removeSelectedReferences() {
     const form = document.getElementById("ref_remove_form")
     const selected = form.querySelector('input[name="selected"]')
@@ -63,6 +90,9 @@ function removeSelectedReferences() {
     form.submit()
 }
 
+/**
+ * Remove selected consults.
+ */
 function removeSelectedConsults() {
     const form = document.getElementById("consult_remove_form")
     const selected = form.querySelector('input[name="selected"]')
@@ -71,6 +101,10 @@ function removeSelectedConsults() {
     form.submit()
 }
 
+/**
+ * Open/Close the given menu and closes others.
+ * @param widget
+ */
 function toggleMenu(widget) {
     const old = widget.hidden
     for(let node of Array.from(document.getElementById("actions_menu").childNodes)) node.hidden = true
@@ -89,11 +123,12 @@ function toggleReferences(button) {
     const consult = button.parentNode
     const container = consult.querySelector(".reference_container")
 
-    //TODO Button icon open/close animation
-
     toggleMenu(container);
 }
 
+/**
+ * Send references to a consultant
+ */
 function sendReferences() {
     const emailInput = document.querySelector("#consult_menu > input[name='email']")
     const durationInput = document.querySelector("#consult_menu > select[name='duration']")
@@ -110,6 +145,9 @@ function sendReferences() {
     form.submit()
 }
 
+/**
+ * Summarize the selected references.
+ */
 function generateSummary() {
 	const fakeForm = document.getElementById("generation_menu")
 	const realForm = document.getElementById("generation_form")

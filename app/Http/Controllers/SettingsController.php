@@ -17,8 +17,15 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
+/**
+ * Controller for the /settings page.
+ */
 class SettingsController extends Controller
 {
+
+    /**
+     * Update settings
+     */
     public function update(Request $request): RedirectResponse
     {
         $time = App::make(TimeService::class);

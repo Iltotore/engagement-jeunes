@@ -16,15 +16,13 @@ use App\Models\User;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
-
+//Register a user
 Artisan::command("user:register {mail} {password} {firstName} {lastName} {birthDate} {admin}", function (string $mail, string $password, string $firstName, string $lastName, string $birthDate, bool $admin) {
     User::create(["email" => $mail, "password" => $password, "first_name" => $firstName, "last_name" => $lastName, "birth_date" => $birthDate, "admin" => $admin]);
     info("Registered: $mail, $password, $firstName, $lastName, $birthDate, $admin");
 })->purpose("Register a user");
 
+//Send a mail
 Artisan::command("mail:send {to} {subject} {content}", function(string $to, string $subject, string $content) {
     echo $to;
     Mail::raw($content, function ($m) use($to, $subject, $content) {

@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\App;
 use Nette\InvalidStateException;
 
+/**
+ * A registered user/"jeune".
+ */
 class User extends Authenticatable {
 
     use HasFactory;
@@ -29,23 +32,48 @@ class User extends Authenticatable {
         $this->attributes['password'] = bcrypt($password);
     }
 
+    /**
+     * The references possessed by this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function references() {
         return $this->hasMany(Reference::class, "user_id");
     }
 
+    /**
+     * The consults possessed by this user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function consults() {
         return $this->hasMany(Consult::class, "user_id");
     }
 
+    /**
+     * Checks if the delay to confirm this user (by email) has expired.
+     *
+     * @return bool
+     */
     public function hasExpired(): bool {
         $time = App::make(TimeService::class);
         return !$this->isConfirmed() && $time->currentTime(0) >= strtotime($this->expire_at);
     }
 
+    /**
+     * Checks if this user's email has been confirmed.
+     *
+     * @return bool
+     */
     public function isConfirmed(): bool {
         return $this->expire_at == null && $this->registration_token == null;
     }
 
+    /**
+     * Confirm this user's email.
+     *
+     * @return void
+     */
     public function confirm(): void {
         if($this->isConfirmed()) throw new InvalidStateException("Cannot confirm already confirmed user.");
         if($this->hasExpired()) throw new InvalidStateException("Cannot confirm already expired user.");
@@ -62,12 +90,27 @@ class User extends Authenticatable {
         });
     }
 
+    /**
+     * Unconfirm this user.
+     *
+     * @return void
+     */
     public function unconfirm(): void
     {
         $this->registration_token = uniqid();
         $this->save();
     }
 
+    /**
+     * Create an unconfirmed user.
+     *
+     * @param string $mail
+     * @param string $password
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $birthDate
+     * @return User
+     */
     public static function createUnconfirmed(string $mail, string $password, string $firstName, string $lastName, string $birthDate, bool $admin = false): User
     {
         $time = App::make(TimeService::class);

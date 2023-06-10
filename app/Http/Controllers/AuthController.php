@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
+/**
+ * Controller for authentification-related requests.
+ */
 class AuthController extends Controller
 {
 
@@ -46,6 +49,9 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Handle a registration attempt.
+     */
     public function register(Request $request): RedirectResponse
     {
         $time = App::make(TimeService::class);
@@ -84,6 +90,9 @@ class AuthController extends Controller
             ->with(["user" => $newUser]);
     }
 
+    /**
+     * Handle a confirmation request.
+     */
     public function confirm(Request $request): RedirectResponse|View|Factory
     {
         $token = $request->token;
@@ -95,13 +104,14 @@ class AuthController extends Controller
         } else abort(404);
     }
 
+    /**
+     * Logout the connected user.
+     */
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
 
         $request->session()->invalidate();
-
-       //$request->session()->regenerateToken(); if problem uncomment
 
         return redirect("/home");
     }
