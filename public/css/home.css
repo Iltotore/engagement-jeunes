@@ -4,7 +4,7 @@ div#home_grid {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	color:grey;
-	text-align: left;
+	text-align: justify;
 	margin-top: 0.9vw;
 }
 
@@ -88,8 +88,8 @@ div.home_box_bottom_part {
 div.home_box_bottom_part p {
 	margin: 0;
 	color: grey;
-	text-align: left;
-	font-size: max(1vw,0.95em);
+	text-align: justify;
+    font-size: max(1vw,0.95em);
 	padding: 0.4em;
 	word-wrap: break-word;
 	hyphens: auto;
