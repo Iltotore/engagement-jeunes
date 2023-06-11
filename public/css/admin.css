@@ -1,0 +1,83 @@
+div#account_management_divs {
+	display: inline-grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 5vw;
+	margin-top: 2vh;
+}
+
+div.account_settings_area {
+	border: 1px solid grey;
+	padding: 0 1.5em 1.5em 1.5em;
+	min-width: fit-content;
+	width: 38vw;
+
+	border-radius: 1em;
+	padding: max(0.8vw,0.8em);
+
+	justify-content: center;
+}
+
+div#account_list {
+	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.1),rgba(255, 255, 255, 0));
+}
+
+div.reference_list {
+	background: radial-gradient(circle at top right, rgba(16, 134, 5, 0.1),rgba(255, 255, 255, 0));
+}
+
+/* Lists */
+div.user, div.reference {
+	display: flex;
+	border: 1px solid grey;
+	gap: 1vw;
+	padding: 0.5vw;
+	border-radius: 0.2em;
+	text-align: left;
+	width: 60%;
+	min-width: fit-content;
+
+	justify-content: center;
+
+	margin: 1vw auto;
+}
+div.user_content, div.reference_content {
+	min-width: fit-content;
+}
+
+/* Interactions */
+
+div.user_content:hover, div.user_content:hover * {
+	cursor: pointer;
+	color: rgb(238, 107, 250);
+}
+
+button.user_area_button,  button.reference_area_button {
+    background-color: rgb(218, 8, 89);
+    border: none;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+    font-size: max(0.7vw,0.8em);
+    font-weight: bold;
+    cursor: pointer;
+	padding: 0.4em 0.4em;
+
+	border-radius: 0.5em;
+}
+
+button.user_area_button {
+	background-color: rgb(218, 8, 89);
+}
+button.user_area_button:hover {
+	cursor: pointer;
+	background-color: rgb(238, 107, 250);
+}
+
+button.reference_area_button {
+	background-color: rgb(16, 134, 5);
+}
+button.reference_area_button:hover {
+	cursor: pointer;
+	background-color: rgb(119, 250, 107);
+}
