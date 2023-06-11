@@ -110,13 +110,16 @@
 							</fieldset>
 							<fieldset id="consult_menu" hidden>
 								<legend>Envoyer à un consultant</legend>
-								<input name="email" type="email">
-								<select name="duration">
-									<option value="1">1 Jour</option>
-									<option value="7" selected>1 Semaine</option>
-									<option value="14">2 Semaines</option>
-									<option value="30">1 Mois</option>
-								</select>
+								<label for="email">Email: <input name="email" type="email"></label>
+								<label for="duration">
+									Expire dans: 
+									<select name="duration">
+										<option value="1">1 Jour</option>
+										<option value="7" selected>1 Semaine</option>
+										<option value="14">2 Semaines</option>
+										<option value="30">1 Mois</option>
+									</select>
+								</label>
 								<button onclick="sendReferences()">Envoyer</button>
 							</fieldset>
 
