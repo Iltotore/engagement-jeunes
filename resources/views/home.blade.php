@@ -32,7 +32,7 @@
 			</div>
 
 			<div id="home_links_grid">
-				<a id="home_link_valorisation" class="home_box" href="/jeune">
+				<a id="home_link_valorisation" class="home_box" href="/account">
 					<div class="home_box_top_part">
 						<p>1ère étape</p>
 						<p>la valorisation</p>
