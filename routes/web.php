@@ -56,17 +56,7 @@ Route::get("/references/display", [ReferenceController::class, "display"]);
 Route::get("/consult", [ReferenceController::class, "showConsult"]);
 
 // Summary generation
-Route::any("/references/summarize", function() {
-    $summary_settings = $_POST;
-    if($summary_settings["summary_type"] == "PDF") {
-        $pdf = App::make('dompdf.wrapper');
-        $pdf->loadHTML(view("reference_summary_template", ["summary_settings"=>$summary_settings]));
-        return $pdf->stream();
-    }
-    else {
-        return view("reference_summary_template", ["summary_settings"=>$summary_settings]);
-    }
-})->middleware(["post", "auth.account"]);
+Route::any("/references/summarize", [ReferenceController::class, "summarize"])->middleware(["post", "auth.account"]);
 
 //Private API Routes.
 Route::any("/api/login", [AuthController::class, "login"])->middleware("post");

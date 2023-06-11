@@ -27,12 +27,7 @@
 	<body>
 		<h1>Liste des références pour <mark>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</mark>:</h1>
 		<ol id="reference_area">
-			<?php $summary_settings["selected"] = "-" . $summary_settings["selected"]; ?>
-			@foreach(Auth::user()->references as $reference)
-				@if(!strpos($summary_settings["selected"],$reference->id))
-					@continue
-				@endif
-
+			@foreach($references as $reference)
 				<li class="reference_list_member">
 					<h2>{{ $reference->area }} - {{ $reference->timeDuration() / (24*3600) }} jours</h2>
 					<div class="reference_content">
