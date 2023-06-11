@@ -6,7 +6,7 @@
 <body>
     @include('app_common', ['message' => "Des partenaires tout aussi engagés"])
     <p>
-        JEUNES 6.4 est un dispositif issu de la <a href="#">charte de l’engagement</a> pour la
+        JEUNES 6.4 est un dispositif issu de la <a href="http://test.le64.fr/uploads/tx_arccg64/charte2013.pdf">charte de l’engagement</a> pour la
         jeunesse signée en 2013 par des partenaires institutionnels...
     </p>
     <br>
