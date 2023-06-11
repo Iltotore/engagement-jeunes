@@ -269,7 +269,7 @@ class ReferenceController extends Controller {
         if($request->summary_type == "PDF") {
             $pdf = App::make('dompdf.wrapper');
             $pdf->loadHTML(view("reference_summary_template", ["references" => $references]));
-            return $pdf->stream();
+            return $pdf->download();
         } else return view("reference_summary_template", ["references" => $references]);
     }
 }
