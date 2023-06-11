@@ -4,6 +4,8 @@
 		<link rel="stylesheet" href="{{ asset('css/settings.css') }}">
 	</head>
 	<body>
+		<!-- This page is used when the user wants to change his settings. -->
+
 		@include('app_common', ['message' => "Mon profil"])
 		<div id="settings_area">
 			<form id="settings_area" action="/api/settings" method="post">

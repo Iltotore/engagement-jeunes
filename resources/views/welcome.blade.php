@@ -6,6 +6,8 @@
 		<link rel="stylesheet" href="{{ asset('css/welcome.css') }}">
 	</head>
 	<body>
+		<!-- Welcome page of the website. It is one of the few that doesn't use the common code/structure shared by every other page. -->
+
 		<div id="welcome_background">
 			<h1 id="motto_text">Pour faire de l'engagement</br>une valeur !</h1></br>
 			<img id="jeunes_logo" src="{{ asset('svg/LOGOS_JEUNES.svg') }}" xmlns="http://www.w3.org/2000/svg"/>

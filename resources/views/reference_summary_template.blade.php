@@ -1,5 +1,6 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
+		<!-- This is the only page to have its CSS bundled in, due to issues with DOMPDF. -->
 		<style>
 			* {
 				font-family: Arial, Helvetica, sans-serif;
@@ -26,6 +27,8 @@
 	</head>
 	<body>
 		<h1>Liste des références pour <mark>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</mark>:</h1>
+
+		<!-- A list of every reference selected by the user to display in the summary. -->
 		<ol id="reference_area">
 			@foreach($references as $reference)
 				<li class="reference_list_member">

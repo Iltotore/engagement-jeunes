@@ -8,6 +8,8 @@
 
 	<body>
 		@include('app_common', ['message' => "Mes références"])
+
+		<!-- Hidden forms used by the JS side to perform requests from other kinds of HTML elements or fake forms -->
 		<div hidden>
 			<form id="user_remove_form" action="/api/admin/users/remove" method="post">
 				@csrf
@@ -24,7 +26,10 @@
 				@endif
 			</form>
 		</div>
+
 		<div id="account_management_divs">
+
+			<!-- The account management area of the admin panel -->
 			<div class="account_settings_area" id="account_list">
 				<div class="user_actions">
 					<button class="user_area_button" onclick="removeSelectedUsers()">Supprimer</button>
@@ -40,6 +45,8 @@
 					@endif
 				@endforeach
 			</div>
+
+			<!-- The reference management area of the admin panel -->
 			<div class="reference_list account_settings_area">
 				<div class="reference_actions">
 					<button class="reference_area_button" onclick="removeSelectedReferences()">Supprimer</button>
