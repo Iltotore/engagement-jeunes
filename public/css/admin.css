@@ -81,3 +81,7 @@ button.reference_area_button:hover {
 	cursor: pointer;
 	background-color: rgb(119, 250, 107);
 }
+
+label.unconfirmed {
+    color: red;
+}
