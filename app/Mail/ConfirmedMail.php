@@ -18,7 +18,7 @@ class ConfirmedMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public User $user, public Reference $reference) {
+    public function __construct(public Reference $reference) {
     }
 
     /**
@@ -37,7 +37,7 @@ class ConfirmedMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'mail.confirmed',
         );
     }
 

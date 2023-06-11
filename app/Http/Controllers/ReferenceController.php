@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmedMail;
 use App\Mail\ConsultMail;
 use App\Models\Consult;
 use App\Models\Reference;
@@ -138,6 +139,7 @@ class ReferenceController extends Controller {
         $reference = Reference::where("token", $token)->first();
         if ($reference) {
             $reference->confirm();
+            Mail::to($reference->user->email)->send(new ConfirmedMail($reference));
             return view("reference_confirm");
         } else abort(404);
     }
