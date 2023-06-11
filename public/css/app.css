@@ -192,3 +192,10 @@ div.ok {
 div.warn {
     background-color: orange;
 }
+
+/* Last minute input box change */
+input[type="text"], input[type="password"], input[type="email"], input[type="number"], input[type="date"], input[type="time"], input[type="tel"], input[type="url"] {
+	border: none;
+	border-bottom: 3px dotted grey;
+	background: none;
+}
