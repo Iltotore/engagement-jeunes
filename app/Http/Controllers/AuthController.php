@@ -71,7 +71,7 @@ class AuthController extends Controller
         $age = $current - strtotime($request->birth_date);
         $year = 365*24*3600;
 
-        if($age < 16*$year || $age > 30*$year) $errors += ["birth" => "Seuls les jeunes de 16 à 30 ans peuvent s'inscrire.".$request->birth_date];
+        if($age < 16*$year || $age > 30*$year) $errors += ["birth" => "Seuls les jeunes de 16 à 30 ans peuvent s'inscrire."];
         if ($request->password != $request->confirm) $errors += ["password" => "Les deux mots de passe ne correspondent pas."];
         if (User::where("email", $request->email)->first()) $errors += ["email" => "Cet email est déjà utilisé"];
 
