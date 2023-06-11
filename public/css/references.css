@@ -1,3 +1,5 @@
+/* --------------------- MAIN PAGE --------------------------- */
+
 div#account_management_divs {
 	display: inline-grid;
 	grid-template-columns: 1fr 1fr;
@@ -31,7 +33,6 @@ div.reference_actions {
 }
 
 div.reference_actions > button,  div.consult_actions > button {
-    background-color: rgb(218, 8, 89);
     border: none;
     text-align: center;
     color: white;
@@ -108,4 +109,41 @@ label.unconfirmed {
 	div#account_management_divs {
 	  grid-template-columns: 1fr;
 	}
+}
+
+/* --------------------- FORMS --------------------------- */
+fieldset button {
+	background-color: rgba(218, 8, 89,1);
+	border: none;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+    font-size: max(0.7vw,0.8em);
+    font-weight: bold;
+    cursor: pointer;
+	padding: 0.4em 0.4em;
+
+	border-radius: 0.2em;
+}
+fieldset > button {
+	margin: 0.5vw;
+}
+div#soft_skill_div > button, div#hard_skill_div > button {
+	margin: 0vw;
+	margin-left: 1em;
+}
+div#soft_skill_div li , div#hard_skill_div li {
+	list-style-position: inside;
+}
+fieldset button:hover {
+	cursor: pointer;
+	background-color: rgb(238, 107, 250);
+}
+fieldset {
+	margin-top: 0.5vw;
+	border: 1px solid grey;
+	padding: 0.5vw;
+	min-width: fit-content;
+	border-radius: 0.1em;
 }
