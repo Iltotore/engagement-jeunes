@@ -3,6 +3,7 @@ div#settings_area{
 	grid-template-columns: 1fr;
 	gap: 0;
 	margin-top: 1vh;
+	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.03),rgba(255, 255, 255, 0));
 }
 
 form#settings_area {

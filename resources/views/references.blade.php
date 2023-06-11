@@ -62,7 +62,7 @@
 						</form>
 					</div>
 
-					<h1>Liste des références:</h1>
+					<h1>Liste des références</h1>
 
 					<!-- Reference management buttons -->
 					<div class="reference_actions">
@@ -153,10 +153,10 @@
 					@endforeach
 				</div>
 			</div>
-			
+
 			<!-- The consultation management area of the user panel -->
 			<div id="consultation_zone" class="account_settings_area">
-				<h1>Liste des consultations:</h1>
+				<h1>Liste des consultations</h1>
 				<div class="consult_actions">
 					<button class="account_area_button" onclick="removeSelectedConsults()">Supprimer</button>
 				</div>

@@ -9,17 +9,17 @@ div.account_settings_area {
 	border: 1px solid grey;
 	padding: 0 1.5em 1.5em 1.5em;
 	min-width: fit-content;
-	width: 38vw;
+	width: 39vw;
 
-	border-radius: 1em;
+	border-radius: 0.1em;
 }
 
 div#reference_zone {
-	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.1),rgba(255, 255, 255, 0));
+	background: radial-gradient(circle at top left, rgba(218, 8, 9, 0.07),rgba(255, 255, 255, 0));
 }
 
 div#consultation_zone {
-	background: radial-gradient(circle at top right, rgba(16, 134, 5, 0.1),rgba(255, 255, 255, 0));
+	background: radial-gradient(circle at top right, rgba(16, 134, 5, 0.07),rgba(255, 255, 255, 0));
 }
 
 
@@ -42,7 +42,7 @@ div.reference_actions > button,  div.consult_actions > button {
     cursor: pointer;
 	padding: 0.4em 0.4em;
 
-	border-radius: 0.5em;
+	border-radius: 0.2em;
 }
 
 div.reference_actions > button {
@@ -75,7 +75,15 @@ div.reference_list > div.reference, div.consult_list > div.consult {
 }
 div#reference_zone h1, div#consultation_zone h1 {
 	letter-spacing: 0;
-	font-weight: lighter;
+	font-weight: bold;
+	text-align: left;
+	font-size: max(1.6vw,1.5em);
+}
+div#reference_zone h1 {
+	color: rgb(218, 8, 89);
+}
+div#consultation_zone h1 {
+	color: rgb(16, 134, 5);
 }
 div.reference_list > div.reference > input[type="checkbox"], div.consult_list > div.consult > input[type="checkbox"] {
 	width: 1vw;
