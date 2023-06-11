@@ -130,8 +130,8 @@ function toggleReferences(button) {
  * Send references to a consultant
  */
 function sendReferences() {
-    const emailInput = document.querySelector("#consult_menu > input[name='email']")
-    const durationInput = document.querySelector("#consult_menu > select[name='duration']")
+    const emailInput = document.querySelector("#consult_menu > label > input[name='email']")
+    const durationInput = document.querySelector("#consult_menu > label > select[name='duration']")
 
     const form = document.getElementById("ref_send_form")
     const selected = form.querySelector('input[name="selected"]')
