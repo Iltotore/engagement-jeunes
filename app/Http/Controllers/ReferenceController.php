@@ -13,8 +13,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Validation\Rule;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller for reference-related requests.
@@ -185,9 +187,13 @@ class ReferenceController extends Controller {
         $references = [];
 
         foreach ($ids as $id) {
-            $reference = Reference::where("id", $id)->where("user_id", $user->id);
-            if ($reference) $references[] = $reference->first();
-            else return redirect()
+            $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
+            if ($reference != null) {
+                if($reference->isConfirmed()) $references[] = $reference;
+                else return redirect()
+                    ->intended("/account")
+                    ->withErrors(["Vous ne pouvez pas envoyer de références non confirmées."]);
+            } else return redirect()
                 ->intended("/account")
                 ->withErrors(["Une référence n'a pas été trouvée. La page est-elle à jour ?"]);
         }
@@ -234,5 +240,36 @@ class ReferenceController extends Controller {
                     "ok" => ["Consultations supprimées"]
                 ]
             ]);
+    }
+
+    public function summarize(Request $request): Response|View {
+
+        $request->validate([
+            "summary_type" => ["required", Rule::in(["PDF", "HTML"])],
+            "selected" => ["required"]
+        ]);
+
+        $ids = explode(",", $request->selected ?? "");
+        $references = [];
+
+        $user = Auth::user();
+
+        foreach ($ids as $id) {
+            $reference = Reference::where("id", $id)->where("user_id", $user->id)->first();
+            if ($reference != null) {
+                if($reference->isConfirmed()) $references[] = $reference;
+                else return redirect()
+                    ->intended("/account")
+                    ->withErrors(["Vous ne pouvez pas envoyer de références non confirmées."]);
+            } else return redirect()
+                ->intended("/account")
+                ->withErrors(["Une référence n'a pas été trouvée. La page est-elle à jour ?"]);
+        }
+
+        if($request->summary_type == "PDF") {
+            $pdf = App::make('dompdf.wrapper');
+            $pdf->loadHTML(view("reference_summary_template", ["references" => $references]));
+            return $pdf->stream();
+        } else return view("reference_summary_template", ["references" => $references]);
     }
 }

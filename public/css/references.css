@@ -91,6 +91,10 @@ div.consult_actions > button:hover {
 	background-color: rgb(119, 250, 107);
 }
 
+label.unconfirmed {
+    color: red;
+}
+
 /* When on phone */
 @media (max-width: 768px) {
 	div#account_management_divs {

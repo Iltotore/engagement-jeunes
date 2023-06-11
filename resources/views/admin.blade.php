@@ -49,9 +49,12 @@
 						<div class="reference">
 							<input class="select" name="{{ $ref->id }}" type="checkbox">
 							<div class="reference_content">
-								<label class="summary">Référent : {{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}</label></br>
-								<label>Lieu : {{ $ref->area }}</label></br>
-								</br>
+								<label class="summary">Référent : {{ $ref->ref_first_name }} {{ strtoupper($ref->ref_last_name) }}</label><br>
+								<label>Lieu : {{ $ref->area }}</label><br>
+                                @if(!$ref->isConfirmed())
+                                    <label class="unconfirmed">Non confirmée</label><br>
+                                @endif
+								<br>
 								<label class="description_summary">{{ trim(substr($ref->description, 0, 30)) }}...</label>
 							</div>
 						</div>
