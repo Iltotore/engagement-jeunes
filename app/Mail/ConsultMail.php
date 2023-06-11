@@ -24,7 +24,7 @@ class ConsultMail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: "Confirmation de la référence de ".$this->consult->user->first_name." ".$this->consult->user->last_name,
+            subject: "Références de ".$this->consult->user->first_name." ".$this->consult->user->last_name,
         );
     }
 

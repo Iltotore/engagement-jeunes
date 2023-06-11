@@ -24,7 +24,7 @@ class RegisterMail extends Mailable {
      */
     public function envelope(): Envelope {
         return new Envelope(
-            subject: 'Register Mail',
+            subject: "Confirmation d'inscription",
         );
     }
 
