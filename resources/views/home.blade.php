@@ -5,7 +5,11 @@
 	</head>
 	<body>
 		@include('app_common', ['message' => "Pour faire de l'engagement une valeur"])
+
+		<!-- This is the area that contains the content of the home page. -->
 		<div class="content_space">
+
+			<!-- We present here the project to the visitor. -->
 			<div id="home_grid">
 				<div>
 					<h1>De quoi s'agit-il ?</h1>
@@ -31,6 +35,7 @@
 				</div>
 			</div>
 
+			<!-- We present here the 3 steps of the project. -->
 			<div id="home_links_grid">
 				<a id="home_link_valorisation" class="home_box" href="/account">
 					<div class="home_box_top_part">

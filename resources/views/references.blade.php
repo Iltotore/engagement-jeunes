@@ -8,10 +8,15 @@
 	</head>
 
 	<body>
+		<!-- This is the page that displays the references of a user, along with his consultations. Along with ways to manage them. -->
+
 		@include('app_common', ['message' => "Mes références"])
 		<div id="account_management_divs">
+			<!-- The reference management area of the user panel -->
 			<div id="reference_zone" class="account_settings_area">
 				<div>
+
+					<!-- Hidden forms used by the JS side to perform requests from other kinds of HTML elements or fake forms -->
 					<div hidden>
 						<form id="add_form" action="api/references/add" method="post" hidden>
 							@csrf
@@ -56,13 +61,18 @@
 							<label for="HTML">HTML</label>
 						</form>
 					</div>
+
 					<h1>Liste des références:</h1>
+
+					<!-- Reference management buttons -->
 					<div class="reference_actions">
 						<button class="account_area_button" onclick="toggleAddMenu()">Ajouter</button>
 						<button class="account_area_button" onclick="removeSelectedReferences()">Supprimer</button>
 						<button class="account_area_button" onclick="toggleConsultMenu()">Envoyer à un consultant</button>
 						<button class="account_area_button" onclick="toggleMenu(document.getElementById('generation_menu'))">Générer une page de résumé</button>
 					</div>
+
+					<!-- Reference management menus -->
 					<div id="actions_menu">
 							<fieldset id="add_menu" hidden>
 								<legend>Ajouter une référence</legend>
@@ -124,6 +134,8 @@
 							</div>
 						</div>
 				</div>
+
+				<!-- The reference list of the user panel -->
 				<div class="reference_list">
 					@foreach(Auth::user()->references as $ref)
 						<div class="reference">
@@ -141,7 +153,8 @@
 					@endforeach
 				</div>
 			</div>
-
+			
+			<!-- The consultation management area of the user panel -->
 			<div id="consultation_zone" class="account_settings_area">
 				<h1>Liste des consultations:</h1>
 				<div class="consult_actions">

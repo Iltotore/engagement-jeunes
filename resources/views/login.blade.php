@@ -7,6 +7,7 @@
 	@include('app_common', ['message' => "Je m'engage"])
 
 	<div id="account_area_div">
+		<!-- This is the area that contains the login form. -->
 		<div id="login_div" class="account_info_area">
 			<form action="/api/login" method="post">
                 @csrf
@@ -20,6 +21,8 @@
 				</fieldset>
 			</form>
 		</div>
+
+		<!-- This is the area that contains the register form. -->
 		<div id="register_div" class="account_info_area">
 			<form action="/api/register" method="post">
                 @csrf
