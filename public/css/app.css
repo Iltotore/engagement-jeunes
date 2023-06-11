@@ -130,6 +130,10 @@ div#tab_bar a {
 	font-weight: lighter;
 	font-size: max(1.3vw,1em);
 }
+div#tab_bar a:hover {
+	text-decoration: underline;
+	background: radial-gradient(circle at center, rgba(255, 238, 0, 0.2) 0%, rgba(0, 0, 0, 0) 95%);
+}
 
 a#admin_button {
     color: var(--admin-color)
@@ -146,6 +150,8 @@ a#settings_button {
 a#partners_button {
 	color: var(--partners-color)
 }
+
+/* Notifications */
 
 div.notif {
     display: flex;

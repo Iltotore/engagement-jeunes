@@ -62,7 +62,7 @@
 						</form>
 					</div>
 
-					<h1>Liste des références:</h1>
+					<h1>Liste des références</h1>
 
 					<!-- Reference management buttons -->
 					<div class="reference_actions">
@@ -80,27 +80,27 @@
 									<br>
 									<textarea name="description" rows="3" cols="40" style="resize: both;" required></textarea>
 								</label>
-								<br>
+								<br><br>
 								<label for="area">Lieu :
 									<input type="text" name="area" required>
 								</label>
-								<br>
+								<br><br>
 								<label>Savoir-faire:</label>
-								<div>
+								<div id="hard_skill_div">
 									<input name="hard_skill" type="text">
 									<button onclick="addSkill('hard')">Ajouter</button>
 									<ul id="hard_skills">
 									</ul>
 								</div>
 								<label>Savoir-être:</label>
-								<div>
+								<div id="soft_skill_div">
 									<input name="soft_skill" type="text">
 									<button onclick="addSkill('soft')">Ajouter</button>
 									<ul id="soft_skills">
 									</ul>
 								</div>
 								<label for="begin_date">Date début :<input type="date" name="begin_date" required></label>
-								<label for="end_date">Date fin :<input type="date" name="end_date" required></label><br>
+								<label for="end_date">Date fin :<input type="date" name="end_date" required></label><br><br>
 								<label for="email">Email du référent:<input type="email" name="email" required></label><br>
 								<label for="first_name">Prénom du référent:<input type="text" name="first_name" required></label><br>
 								<label for="last_name">Nom du référent:<input type="text" name="last_name" required></label><br>
@@ -153,10 +153,10 @@
 					@endforeach
 				</div>
 			</div>
-			
+
 			<!-- The consultation management area of the user panel -->
 			<div id="consultation_zone" class="account_settings_area">
-				<h1>Liste des consultations:</h1>
+				<h1>Liste des consultations</h1>
 				<div class="consult_actions">
 					<button class="account_area_button" onclick="removeSelectedConsults()">Supprimer</button>
 				</div>
